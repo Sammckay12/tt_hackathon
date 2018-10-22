@@ -11,12 +11,7 @@ const RouteStats = ({route, user}) => {
   const {
     lengthInMeters,
     travelTimeInSeconds,
-    batteryConsumptionInkWh,
-    energySavingInkWh
   } = route.summary;
-
-  const { currentChargeInkWh } = user.consumptionModel;
-  const insufficientCharge = batteryConsumptionInkWh > currentChargeInkWh;
 
   return (
     <div className="RouteStats">
@@ -32,27 +27,6 @@ const RouteStats = ({route, user}) => {
            label="Time"
            />
       </div>
-      <div className="flex-horizontal">
-        <Tile
-           value={batteryConsumptionInkWh.toFixed(1)}
-           units="kWh"
-           label="Energy"
-           />
-        {energySavingInkWh !== undefined &&
-        <Tile
-           value={energySavingInkWh.toFixed(1)}
-           units="kWh"
-           label="Energy Saved"
-           highlight
-             />
-        }
-      </div>
-      {insufficientCharge && (
-        <div className="RouteStats-status flex-horizontal mt-30">
-          <FaIcon type="exclamation-circle" size={2}/>
-          <span className="RouteStats-status-msg">You will need to recharge to get to this destination</span>
-        </div>
-      )}
     </div>
   );
 };

@@ -88,27 +88,16 @@ class Map extends Component {
     if (routes) {
       layers.push(
         <Route
-           id="route-eco"
-           key="route-eco"
-           coordinates={routes.eco.coordinates}
-           before={before}
-           {...(this.getRouteStyle('eco'))}
-           properties={{route: 'eco'}}
-           onClick={this.onRouteClick}
-           />
-      );
-      layers.push(
-        <Route
            id="route-normal"
            key="route-normal"
            coordinates={routes.normal.coordinates}
-           before={activeRoute === 'eco' ? 'route-eco-stroke' : before}
+//           before={activeRoute === 'eco' ? 'route-eco-stroke' : before}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'normal'}}
            onClick={this.onRouteClick}
            />
       );
-      this.avoidLayers = [...this.avoidLayers, 'route-normal', 'route-eco'];
+      this.avoidLayers = [...this.avoidLayers, 'route-normal'];
     }
 
     return layers;
@@ -117,14 +106,6 @@ class Map extends Component {
   getRouteStyle (routeType) {
     const { user, routes, activeRoute } = this.props;
     const route = routes[routeType];
-    const { batteryConsumptionInkWh } = route.summary;
-    const { currentChargeInkWh } = user.consumptionModel;
-
-    if (activeRoute === routeType) {
-      return (batteryConsumptionInkWh > currentChargeInkWh) ? ROUTE_ACTIVE_STYLE_WARNING : ROUTE_ACTIVE_STYLE;
-    } else {
-      return ROUTE_INACTIVE_STYLE;
-    }
   }
 
   renderMarkers () {

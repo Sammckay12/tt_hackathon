@@ -23,18 +23,6 @@ class SettingsPanel extends Component {
 
   render () {
     const { user, selectedUserIndex } = this.state;
-    const {
-      userEngineType,
-      constantSpeedConsumptionInkWhPerHundredkm,
-      userWeight,
-      currentChargeInkWh,
-      maxChargeInkWh,
-      auxiliaryPowerInkW,
-      accelerationEfficiency,
-      decelerationEfficiency,
-      uphillEfficiency,
-      downhillEfficiency
-    } = this.state.user.consumptionModel;
 
     return (
       <div className="SettingsPanel">
@@ -45,7 +33,7 @@ class SettingsPanel extends Component {
              >
             <BackIcon/>
           </button> */}
-          <div className="SettingsPanel-title">{user.make} {user.model}</div>
+          <div className="SettingsPanel-title">{user.name}</div>
         </div>
         <UserCarousel
            users={users}
@@ -66,7 +54,7 @@ class SettingsPanel extends Component {
                type="string"
                step="1"
                name="userWeight"
-               value={userWeight}
+//               value={userWeight}
                onChange={this.onFieldChange}
                />
           </div>
@@ -77,8 +65,7 @@ class SettingsPanel extends Component {
             <Input
                type="string"
                name="currentChargeInkWh"
-               max={maxChargeInkWh}
-               value={currentChargeInkWh}
+//               value={currentChargeInkWh}
                onChange={this.onFieldChange}
                />
           </div>
@@ -116,25 +103,13 @@ class SettingsPanel extends Component {
     const user = {...this.state.user};
     let { target: { name, value }} = e;
     value = isNaN(value) ? value : parseFloat(value);
-    user.consumptionModel = { ...user.consumptionModel, [name]: value };
     this.setState({user});
   }
 
   onApply = () => {
     const { user, selectedUserIndex } = this.state;
-    const { consumptionModel } = user;
 
     user.coordinates = this.props.user.coordinates;
-
-    if (consumptionModel.currentChargeInkWh > consumptionModel.maxChargeInkWh) {
-      user.consumptionModel = {...consumptionModel, currentChargeInkWh: consumptionModel.maxChargeInkWh};
-
-      this.setState({user}, () => {
-        this.props.onUserChange(user, selectedUserIndex);
-        this.props.onBack();
-      });
-      return;
-    }
 
     this.props.onUserChange(user, selectedUserIndex);
     this.props.onBack();
