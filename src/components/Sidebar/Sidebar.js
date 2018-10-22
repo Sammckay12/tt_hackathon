@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SlideInOut from '../../transitions/SlideInOut';
-import VehiclePanel from '../VehiclePanel/VehiclePanel';
 import SettingsPanel from '../SettingsPanel/SettingsPanel';
 
 import './Sidebar.css';
@@ -24,12 +23,6 @@ class Sidebar extends Component {
              selectedVehicleIndex={selectedVehicleIndex}
              onBack={this.onBack}
              onVehicleChange={onVehicleChange}
-             />
-        </SlideInOut>
-        <SlideInOut in={activePanel === 'vehicle'}>
-          <VehiclePanel
-             {...this.props}
-             onSettings={this.onSettings}
              />
         </SlideInOut>
       </div>
