@@ -1,19 +1,19 @@
-.VehicleCarousel {
+.UserCarousel {
   margin-bottom: 15px;
 }
 
-.VehicleCarousel .Icon {
+.UserCarousel .Icon {
   margin: 0 auto;
   background-color: rgba(255,255,255,0.8);
 }
 
-.VehicleCarousel-dot-group {
+.UserCarousel-dot-group {
   display: flex;
   justify-content: center;
   margin-top: 15px;
 }
 
-.VehicleCarousel .carousel__dot {
+.UserCarousel .carousel__dot {
   width: 9px;
   height: 9px;
   background: #999;
@@ -23,10 +23,10 @@
   outline: none;
 }
 
-.VehicleCarousel .carousel__dot--selected {
+.UserCarousel .carousel__dot--selected {
   background: #fff;
 }
 
-.VehicleCarousel .carousel__dot:last-child {
+.UserCarousel .carousel__dot:last-child {
   margin-right: 0;
 }

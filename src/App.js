@@ -7,18 +7,18 @@ import Map from './components/Map/Map';
 import Sidebar from './components/Sidebar/Sidebar';
 import OnlineSearch from './services/OnlineSearch';
 import OnlineRouting from './services/OnlineRouting';
-import vehicles from './data/vehicles';
+import users from './data/users';
 
 import './App.css';
 
 const startPos = new mapboxgl.LngLat(12.575106, 55.638140);
-const selectedVehicleIndex = 0;
-const vehicle = {...vehicles[selectedVehicleIndex]};
-vehicle.coordinates = startPos;
+const selectedUserIndex = 0;
+const user = {...users[selectedUserIndex]};
+user.coordinates = startPos;
 
 const initialState = {
-  selectedVehicleIndex,
-  vehicle,
+  selectedUserIndex,
+  user,
   destination: null,
   routes: null,
   chargingpark: null,
@@ -43,8 +43,8 @@ class App extends Component {
 
   render () {
     const {
-      selectedVehicleIndex,
-      vehicle,
+      selectedUserIndex,
+      user,
       destination,
       routes,
       chargingpark,
@@ -105,7 +105,7 @@ class App extends Component {
         </Header>
         <div className="App-content">
           <Map {...mapProps}
-               vehicle={vehicle}
+               user={user}
                destination={destination}
                routes={routes}
                chargingpark={chargingpark}
@@ -114,7 +114,7 @@ class App extends Component {
                reachableRangeFn={OnlineRouting.reachableRange}
                onMoveEnd={this.onMapMoveEnd}
                onGeolocate={this.geolocate}
-               onVehicleChange={this.onVehicleChange}
+               onUserChange={this.onUserChange}
                onDestinationChange={this.onDestinationChange}
                onDestinationReverseGeocode={this.onDestinationReverseGeocode}
                onActiveRouteChange={this.onActiveRouteChange}
@@ -123,8 +123,8 @@ class App extends Component {
                />
           <Sidebar
             activePanel={activePanel}
-            selectedVehicleIndex={selectedVehicleIndex}
-            vehicle={vehicle}
+            selectedUserIndex={selectedUserIndex}
+            user={user}
             destination={destination}
             routes={routes}
             chargingpark={chargingpark}
@@ -134,7 +134,7 @@ class App extends Component {
             onDestinationSelect={this.onDestinationSelect}
             onActiveRouteChange={this.onActiveRouteChange}
             onSearchClear={this.onSearchClear}
-            onVehicleChange={this.onVehicleChange}
+            onUserChange={this.onUserChange}
             onActivePanelChange={this.onActivePanelChange}
             />
         </div>
@@ -143,11 +143,11 @@ class App extends Component {
   }
 
   route () {
-    const { vehicle, destination, activeRoute } = this.state;
-    if (vehicle && destination) {
-      OnlineRouting.batchRoute(vehicle, destination)
+    const { user, destination, activeRoute } = this.state;
+    if (user && destination) {
+      OnlineRouting.batchRoute(user, destination)
         .then(routes => {
-          this.setState({errorMessage: null, routes, activePanel: 'vehicle', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
+          this.setState({errorMessage: null, routes, activePanel: 'user', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
         })
         .catch((reason) => {
           const msg = `${reason.message}. Try moving the either the route start or end point`;
@@ -193,12 +193,12 @@ class App extends Component {
     this.setState({mapCenter: lngLat});
   }
 
-  onVehicleChange = (vehicle, index) => {
-    const selectedVehicleIndex = isNaN(index) ? this.state.selectedVehicleIndex : index;
+  onUserChange = (user, index) => {
+    const selectedUserIndex = isNaN(index) ? this.state.selectedUserIndex : index;
 
     this.setState({
-      selectedVehicleIndex,
-      vehicle: Object.assign({}, this.state.vehicle, vehicle)
+      selectedUserIndex,
+      user: Object.assign({}, this.state.user, user)
     }, () => this.route());
   }
 

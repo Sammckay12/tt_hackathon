@@ -8,13 +8,13 @@ const MapPopup = ({
   coordinates,
   onClose,
   onRoute,
-  onSetVehiclePosition
+  onSetUserPosition
 }) => {
   return (
     <div className="MapPopup">
       <div className="MapPopup-content">
         <Button flat onClick={() => onRoute(coordinates)} icon={<FaIcon type="flag-checkered"/>}>Route to here</Button>
-        <Button flat onClick={() => onSetVehiclePosition(coordinates)} icon={<FaIcon type="car"/>}>Set vehicle location</Button>
+        <Button flat onClick={() => onSetUserPosition(coordinates)} icon={<FaIcon type="car"/>}>Set user location</Button>
       </div>
     </div>
   );
@@ -27,7 +27,7 @@ MapPopup.propTypes = {
   ]),
   onClose: PropTypes.func.isRequired,
   onRoute: PropTypes.func.isRequired,
-  onSetVehiclePosition: PropTypes.func.isRequired
+  onSetUserPosition: PropTypes.func.isRequired
 };
 
 export default MapPopup;

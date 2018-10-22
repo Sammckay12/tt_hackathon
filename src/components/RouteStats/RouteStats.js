@@ -7,7 +7,7 @@ import Tile from '../Tile/Tile';
 
 import './RouteStats.css';
 
-const RouteStats = ({route, vehicle}) => {
+const RouteStats = ({route, user}) => {
   const {
     lengthInMeters,
     travelTimeInSeconds,
@@ -15,7 +15,7 @@ const RouteStats = ({route, vehicle}) => {
     energySavingInkWh
   } = route.summary;
 
-  const { currentChargeInkWh } = vehicle.consumptionModel;
+  const { currentChargeInkWh } = user.consumptionModel;
   const insufficientCharge = batteryConsumptionInkWh > currentChargeInkWh;
 
   return (
@@ -59,7 +59,7 @@ const RouteStats = ({route, vehicle}) => {
 
 RouteStats.propTypes = {
   route: PropTypes.object,
-  vehicle: PropTypes.object
+  user: PropTypes.object
 };
 
 export default RouteStats;

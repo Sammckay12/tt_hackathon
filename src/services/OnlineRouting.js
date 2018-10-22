@@ -5,11 +5,11 @@ import _ from 'lodash';
 import objectToQueryString from '../util/objectToQueryString';
 import {TOMTOM_API_KEY, ONLINE_ROUTING_BASE_URL} from '../config';
 
-const reachableRange = (vehicle, routeType = 'fastest', useTraffic = true) => {
-  const { coordinates } = vehicle;
-  const consumptionModelParams = objectToQueryString(vehicle.consumptionModel);
+const reachableRange = (user, routeType = 'fastest', useTraffic = true) => {
+  const { coordinates } = user;
+  const consumptionModelParams = objectToQueryString(user.consumptionModel);
   const points = `${coordinates.lat},${coordinates.lng}`;
-  const url = `${ONLINE_ROUTING_BASE_URL}/calculateReachableRange/${points}/json?routeType=${routeType}&traffic=${useTraffic}&${consumptionModelParams}&energyBudgetInkWh=${vehicle.consumptionModel.currentChargeInkWh}&key=${TOMTOM_API_KEY}`;
+  const url = `${ONLINE_ROUTING_BASE_URL}/calculateReachableRange/${points}/json?routeType=${routeType}&traffic=${useTraffic}&${consumptionModelParams}&energyBudgetInkWh=${user.consumptionModel.currentChargeInkWh}&key=${TOMTOM_API_KEY}`;
 
   const boundary = cache.get(url);
 
@@ -35,10 +35,10 @@ const reachableRange = (vehicle, routeType = 'fastest', useTraffic = true) => {
   }
 };
 
-const batchRoute = (vehicle, destination, useTraffic = true) => {
+const batchRoute = (user, destination, useTraffic = true) => {
   const batchItems = [];
-  const points = [mapboxgl.LngLat.convert(vehicle.coordinates), mapboxgl.LngLat.convert(destination.coordinates)].map(p => `${p.lat},${p.lng}`).join(':');
-  const consumptionModelParams = objectToQueryString(vehicle.consumptionModel);
+  const points = [mapboxgl.LngLat.convert(user.coordinates), mapboxgl.LngLat.convert(destination.coordinates)].map(p => `${p.lat},${p.lng}`).join(':');
+  const consumptionModelParams = objectToQueryString(user.consumptionModel);
 
   batchItems.push({
     query: `/calculateRoute/${points}/json?routeType=fastest&traffic=${useTraffic}&${consumptionModelParams}`

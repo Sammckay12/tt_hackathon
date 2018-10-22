@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { InputLabel, Input } from 'legoland-ui';
-import BackIcon from '../BackIcon/BackIcon';
-import VehicleCarousel from '../VehicleCarousel/VehicleCarousel';
-import vehicles from '../../data/vehicles';
+import UserCarousel from '../UserCarousel/UserCarousel';
+import users from '../../data/users';
 
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './SettingsPanel.css';
@@ -12,22 +11,22 @@ import './SettingsPanel.css';
 class SettingsPanel extends Component {
 
   state = {
-    vehicle: {...this.props.vehicle},
-    selectedVehicleIndex: this.props.selectedVehicleIndex
+    user: {...this.props.user},
+    selectedUserIndex: this.props.selectedUserIndex
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!_.isEqual(this.props.vehicle, nextProps.vehicle) || this.props.selectedVehicleIndex !== nextProps.selectedVehicleIndex) {
-      this.setState({vehicle: {...nextProps.vehicle}, selectedVehicleIndex: nextProps.selectedVehicleIndex});
+    if (!_.isEqual(this.props.user, nextProps.user) || this.props.selectedUserIndex !== nextProps.selectedUserIndex) {
+      this.setState({user: {...nextProps.user}, selectedUserIndex: nextProps.selectedUserIndex});
     }
   }
 
   render () {
-    const { vehicle, selectedVehicleIndex } = this.state;
+    const { user, selectedUserIndex } = this.state;
     const {
-      vehicleEngineType,
+      userEngineType,
       constantSpeedConsumptionInkWhPerHundredkm,
-      vehicleWeight,
+      userWeight,
       currentChargeInkWh,
       maxChargeInkWh,
       auxiliaryPowerInkW,
@@ -35,7 +34,7 @@ class SettingsPanel extends Component {
       decelerationEfficiency,
       uphillEfficiency,
       downhillEfficiency
-    } = this.state.vehicle.consumptionModel;
+    } = this.state.user.consumptionModel;
 
     return (
       <div className="SettingsPanel">
@@ -46,12 +45,12 @@ class SettingsPanel extends Component {
              >
             <BackIcon/>
           </button> */}
-          <div className="SettingsPanel-title">{vehicle.make} {vehicle.model}</div>
+          <div className="SettingsPanel-title">{user.make} {user.model}</div>
         </div>
-        <VehicleCarousel
-           vehicles={vehicles}
-           currentSlide={selectedVehicleIndex}
-           onChange={this.onVehicleChange}
+        <UserCarousel
+           users={users}
+           currentSlide={selectedUserIndex}
+           onChange={this.onUserChange}
            />
         <form ref={node => this.form = node} action="" onSubmit={this.onSubmit}>
           {/* Hidden submit button to enable 'Go' button to submit form under iOS */}
@@ -59,107 +58,27 @@ class SettingsPanel extends Component {
              type="submit"
              style={{visibility: 'hidden', position: 'absolute'}}
              />
-          <Input
-             type="hidden"
-             name="vehicleEngineType"
-             value={vehicleEngineType}
-             />
-          <Input
-             type="hidden"
-             name="constantSpeedConsumptionInkWhPerHundredkm"
-             value={constantSpeedConsumptionInkWhPerHundredkm}
-             />
           <div className="mb-20">
             <InputLabel>
-              Vehicle Weight (kg)
+              Time
             </InputLabel>
             <Input
-               type="number"
-               name="vehicleWeight"
-               value={vehicleWeight}
+               type="string"
+               step="1"
+               name="userWeight"
+               value={userWeight}
                onChange={this.onFieldChange}
                />
           </div>
           <div className="mb-20">
             <InputLabel>
-              Current Charge (kWh)
+              Day
             </InputLabel>
             <Input
-               type="number"
+               type="string"
                name="currentChargeInkWh"
                max={maxChargeInkWh}
                value={currentChargeInkWh}
-               onChange={this.onFieldChange}
-               />
-          </div>
-          <div className="mb-20">
-            <InputLabel>
-              Max Charge (kWh)
-            </InputLabel>
-            <Input
-               type="number"
-               name="maxChargeInkWh"
-               value={maxChargeInkWh}
-               onChange={this.onFieldChange}
-               />
-          </div>
-          <div className="mb-20">
-            <InputLabel>
-              Auxilary Power (kWh)
-            </InputLabel>
-            <Input
-               type="number"
-               step="0.01"
-               name="auxiliaryPowerInkW"
-               value={auxiliaryPowerInkW}
-               onChange={this.onFieldChange}
-               />
-          </div>
-          <div className="mb-20">
-            <InputLabel>
-              Acceleration Efficiency
-            </InputLabel>
-            <Input
-               type="number"
-               step="0.01"
-               name="accelerationEfficiency"
-               value={accelerationEfficiency}
-               onChange={this.onFieldChange}
-               />
-          </div>
-          <div className="mb-20">
-            <InputLabel>
-              Deceleration Efficiency
-            </InputLabel>
-            <Input
-               type="number"
-               step="0.01"
-               name="decelerationEfficiency"
-               value={decelerationEfficiency}
-               onChange={this.onFieldChange}
-               />
-          </div>
-          <div className="mb-20">
-            <InputLabel>
-              Uphill Efficiency
-            </InputLabel>
-            <Input
-               type="number"
-               step="0.01"
-               name="uphillEfficiency"
-               value={uphillEfficiency}
-               onChange={this.onFieldChange}
-               />
-          </div>
-          <div>
-            <InputLabel>
-              Downhill Efficiency
-            </InputLabel>
-            <Input
-               type="number"
-               step="0.01"
-               name="downhillEfficiency"
-               value={downhillEfficiency}
                onChange={this.onFieldChange}
                />
           </div>
@@ -183,8 +102,8 @@ class SettingsPanel extends Component {
     );
   }
 
-  onVehicleChange = (index) => {
-    this.setState({selectedVehicleIndex: index, vehicle: vehicles[index]});
+  onUserChange = (index) => {
+    this.setState({selectedUserIndex: index, user: users[index]});
   }
 
   onSubmit = (e) => {
@@ -194,51 +113,51 @@ class SettingsPanel extends Component {
   }
 
   onFieldChange = (e) => {
-    const vehicle = {...this.state.vehicle};
+    const user = {...this.state.user};
     let { target: { name, value }} = e;
     value = isNaN(value) ? value : parseFloat(value);
-    vehicle.consumptionModel = { ...vehicle.consumptionModel, [name]: value };
-    this.setState({vehicle});
+    user.consumptionModel = { ...user.consumptionModel, [name]: value };
+    this.setState({user});
   }
 
   onApply = () => {
-    const { vehicle, selectedVehicleIndex } = this.state;
-    const { consumptionModel } = vehicle;
+    const { user, selectedUserIndex } = this.state;
+    const { consumptionModel } = user;
 
-    vehicle.coordinates = this.props.vehicle.coordinates;
+    user.coordinates = this.props.user.coordinates;
 
     if (consumptionModel.currentChargeInkWh > consumptionModel.maxChargeInkWh) {
-      vehicle.consumptionModel = {...consumptionModel, currentChargeInkWh: consumptionModel.maxChargeInkWh};
+      user.consumptionModel = {...consumptionModel, currentChargeInkWh: consumptionModel.maxChargeInkWh};
 
-      this.setState({vehicle}, () => {
-        this.props.onVehicleChange(vehicle, selectedVehicleIndex);
+      this.setState({user}, () => {
+        this.props.onUserChange(user, selectedUserIndex);
         this.props.onBack();
       });
       return;
     }
 
-    this.props.onVehicleChange(vehicle, selectedVehicleIndex);
+    this.props.onUserChange(user, selectedUserIndex);
     this.props.onBack();
   }
 
   onDefaultSettings = () => {
-    const vehicle = vehicles[this.state.selectedVehicleIndex];
-    this.setState({vehicle});
+    const user = users[this.state.selectedUserIndex];
+    this.setState({user});
   }
 
   onBack = () => {
     this.setState(
-      {vehicle: this.props.vehicle, selectedVehicleIndex: this.props.selectedVehicleIndex},
+      {user: this.props.user, selectedUserIndex: this.props.selectedUserIndex},
       () => this.props.onBack()
     );
   }
 }
 
 SettingsPanel.propTypes = {
-  vehicle: PropTypes.object.isRequired,
-  selectedVehicleIndex: PropTypes.number,
+  user: PropTypes.object.isRequired,
+  selectedUserIndex: PropTypes.number,
   onBack: PropTypes.func.isRequired,
-  onVehicleChange: PropTypes.func.isRequired
+  onUserChange: PropTypes.func.isRequired
 };
 
 export default SettingsPanel;

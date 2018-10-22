@@ -10,19 +10,19 @@ class Sidebar extends Component {
   render () {
     const {
       activePanel,
-      vehicle,
-      selectedVehicleIndex,
-      onVehicleChange
+      user,
+      selectedUserIndex,
+      onUserChange
     } = this.props;
 
     return (
       <div className="Sidebar">
         <SlideInOut in={activePanel === 'settings'}>
           <SettingsPanel
-             vehicle={vehicle}
-             selectedVehicleIndex={selectedVehicleIndex}
+             user={user}
+             selectedUserIndex={selectedUserIndex}
              onBack={this.onBack}
-             onVehicleChange={onVehicleChange}
+             onUserChange={onUserChange}
              />
         </SlideInOut>
       </div>
@@ -30,7 +30,7 @@ class Sidebar extends Component {
   }
 
   onBack = () => {
-    this.props.onActivePanelChange('vehicle');
+    this.props.onActivePanelChange('user');
   }
 
   onSettings = () => {
@@ -41,8 +41,8 @@ class Sidebar extends Component {
 Sidebar.propTypes = {
   defaultConsumptionModel: PropTypes.object,
   activePanel: PropTypes.string,
-  vehicle: PropTypes.object,
-  selectedVehicleIndex: PropTypes.number,
+  user: PropTypes.object,
+  selectedUserIndex: PropTypes.number,
   destination: PropTypes.object,
   routes: PropTypes.object,
   chargingpark: PropTypes.object,
@@ -52,7 +52,7 @@ Sidebar.propTypes = {
   onDestinationSelect: PropTypes.func,
   onActiveRouteChange: PropTypes.func,
   onSearchClear: PropTypes.func,
-  onVehicleChange: PropTypes.func,
+  onUserChange: PropTypes.func,
   onActivePanelChange: PropTypes.func
 };
 

@@ -13,10 +13,10 @@ class Carousel extends Component {
   }
 
   render () {
-    const { vehicles, iconSize } = this.props;
-    const slides = vehicles.map((vehicle, idx) => (
+    const { users, iconSize } = this.props;
+    const slides = users.map((user, idx) => (
       <Slide key={idx} index={idx}>
-        <Icon size={iconSize} src={vehicle.image}/>
+        <Icon size={iconSize} src={user.image}/>
       </Slide>
     ));
 
@@ -25,14 +25,14 @@ class Carousel extends Component {
         <Slider style={{height: iconSize}}>
           {slides}
         </Slider>
-        <DotGroup className="VehicleCarousel-dot-group"/>
+        <DotGroup className="UserCarousel-dot-group"/>
       </React.Fragment>
     );
   }
 }
 
 Carousel.propTypes = {
-  vehicles: PropTypes.array,
+  users: PropTypes.array,
   iconSize: PropTypes.number,
   onChange: PropTypes.func
 };

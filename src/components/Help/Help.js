@@ -8,11 +8,11 @@ const Help = () => {
       <h2>How to use</h2>
       <section className="Help-usage">
         <p>
-          Plan an energy-efficient route for an EV with confidence using this TomTom demo, which provides information on vehicle driving range, and charging station location and availability.
+          Plan an energy-efficient route for an EV with confidence using this TomTom demo, which provides information on user driving range, and charging station location and availability.
         </p>
         <h3>Reachable Range</h3>
         <p>
-          Reachable range, how far the vehicle can drive on its current battery level, is displayed as a shaded region on the map.
+          Reachable range, how far the user can drive on its current battery level, is displayed as a shaded region on the map.
         </p>
         <ul>
           <li>
@@ -28,13 +28,13 @@ const Help = () => {
         </p>
         <ul>
           <li>
-            Find a destination by using the search box or by clicking on the map and choosing <b>Route to here</b> from the map popup. Statistics for the normal route are shown in the vehicle panel and the normal and eco routes are shown on the map.
+            Find a destination by using the search box or by clicking on the map and choosing <b>Route to here</b> from the map popup. Statistics for the normal route are shown in the user panel and the normal and eco routes are shown on the map.
           </li>
           <li>
-            To view statistics for the eco route click the <b>ECO</b> tab in the vehicle panel.
+            To view statistics for the eco route click the <b>ECO</b> tab in the user panel.
           </li>
           <li>
-            If the vehicle needs to recharge to reach the destination the route is displayed in red and a warning message is shown.
+            If the user needs to recharge to reach the destination the route is displayed in red and a warning message is shown.
           </li>
         </ul>
         <h3>Charging Stations</h3>
@@ -49,13 +49,13 @@ const Help = () => {
             Turn on <b>Available only</b> to show charging stations with at least one available charging point.
           </li>
           <li>
-            Turn on <b>Compatible plug only</b> to show charging stations that support the vehicle's plug type.
+            Turn on <b>Compatible plug only</b> to show charging stations that support the user's plug type.
           </li>
           <li>
-            Select <b>In range</b> to limit the display of charging stations to those within the vehicle's reachable range.
+            Select <b>In range</b> to limit the display of charging stations to those within the user's reachable range.
           </li>
           <li>
-            Select <b>Along route</b> to limit the display of charging stations to those within 2km of the vehicle's current route.
+            Select <b>Along route</b> to limit the display of charging stations to those within 2km of the user's current route.
           </li>
           <li>
             Click on a charging station icon to view the station's contact details, opening hours and charging point status.

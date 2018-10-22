@@ -115,10 +115,10 @@ class Map extends Component {
   }
 
   getRouteStyle (routeType) {
-    const { vehicle, routes, activeRoute } = this.props;
+    const { user, routes, activeRoute } = this.props;
     const route = routes[routeType];
     const { batteryConsumptionInkWh } = route.summary;
-    const { currentChargeInkWh } = vehicle.consumptionModel;
+    const { currentChargeInkWh } = user.consumptionModel;
 
     if (activeRoute === routeType) {
       return (batteryConsumptionInkWh > currentChargeInkWh) ? ROUTE_ACTIVE_STYLE_WARNING : ROUTE_ACTIVE_STYLE;
@@ -128,19 +128,19 @@ class Map extends Component {
   }
 
   renderMarkers () {
-    const { vehicle, destination } = this.props;
+    const { user, destination } = this.props;
     const markers = [];
 
-    if (vehicle) {
+    if (user) {
       markers.push(
         <DraggableMarker
-           coordinates={vehicle.coordinates}
-           key={`${vehicle.model + '-' + vehicle.coordinates.toString()}-vehicle-marker`}
+           coordinates={user.coordinates}
+           key={`${user.model + '-' + user.coordinates.toString()}-user-marker`}
            anchor="center"
-           onDragEnd={this.setVehiclePosition}
+           onDragEnd={this.setUserPosition}
            draggable
            >
-          <Icon size="2.8rem" src={vehicle.image} shadow/>
+          <Icon size="2.8rem" src={user.image} shadow/>
         </DraggableMarker>
       );
     }
@@ -185,7 +185,7 @@ class Map extends Component {
                coordinates={popupCoordinates}
                onClose={this.onPopupClose}
                onRoute={this.setDestinationPosition}
-               onSetVehiclePosition={this.setVehiclePosition}
+               onSetUserPosition={this.setUserPosition}
                />
           </Popup>
         </React.Fragment>
@@ -195,11 +195,11 @@ class Map extends Component {
     }
   }
 
-  setVehiclePosition = (lngLat) => {
+  setUserPosition = (lngLat) => {
     this.setState({popupCoordinates: null});
 
-    const vehicle = Object.assign({}, this.props.vehicle, {coordinates: lngLat});
-    this.props.onVehicleChange && this.props.onVehicleChange(vehicle);
+    const user = Object.assign({}, this.props.user, {coordinates: lngLat});
+    this.props.onUserChange && this.props.onUserChange(user);
   }
 
   setDestinationPosition = (lngLat) => {
@@ -257,7 +257,7 @@ class Map extends Component {
 }
 
 Map.propTypes = {
-  vehicle: PropTypes.object,
+  user: PropTypes.object,
   destination: PropTypes.object,
   routes: PropTypes.object,
   chargingpark: PropTypes.object,
@@ -268,7 +268,7 @@ Map.propTypes = {
   onDestinationChange: PropTypes.func,
   onDestinationReverseGeocode: PropTypes.func,
   onActiveRouteChange: PropTypes.func,
-  onVehicleChange: PropTypes.func,
+  onUserChange: PropTypes.func,
   onFitBounds: PropTypes.func
 };
 

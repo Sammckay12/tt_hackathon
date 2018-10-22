@@ -1,19 +1,19 @@
-import model3Image from '../images/model3.png';
-import modelSImage from '../images/models.png';
-import i3Image from '../images/i3.png';
-import leafImage from '../images/leaf.png';
+import emmaImage from '../images/emma.png';
+import henryImage from '../images/henry.png';
+import victoriaImage from '../images/victoria.png';
+import philipImage from '../images/philip.png';
 
-const vehicles = [
+const users = [
   {
-    make: 'Tesla',
-    model: 'Model 3',
-    image: model3Image,
+    make: 'Emma',
+    model: '',
+    image: emmaImage,
     connectorType: 'Tesla Connector',
     consumptionModel: {
-      vehicleEngineType: 'electric',
+      userEngineType: 'electric',
       constantSpeedConsumptionInkWhPerHundredkm: '100,14.73',
-      vehicleWeight: 1611,
-      currentChargeInkWh: 50,
+      userWeight: '18:00',
+      currentChargeInkWh: 'Monday',
       maxChargeInkWh: 50,
       auxiliaryPowerInkW: 1.7,
       accelerationEfficiency: 0.66,
@@ -24,15 +24,15 @@ const vehicles = [
     coordinates: null
   },
   {
-    make: 'Tesla',
-    model: 'Model S 100D',
-    image: modelSImage,
+    make: 'Henry',
+    model: '',
+    image: henryImage,
     connectorType: 'Tesla Connector',
     consumptionModel: {
-      vehicleEngineType: 'electric',
+      userEngineType: 'electric',
       constantSpeedConsumptionInkWhPerHundredkm: '100,20.09',
-      vehicleWeight: 2200,
-      currentChargeInkWh: 100,
+      userWeight: '18:00',
+      currentChargeInkWh: 'Monday',
       maxChargeInkWh: 100,
       auxiliaryPowerInkW: 1.7,
       accelerationEfficiency: 0.66,
@@ -43,15 +43,15 @@ const vehicles = [
     coordinates: null
   },
   {
-    make: 'BMW',
-    model: 'i3',
-    image: i3Image,
+    make: 'Victoria',
+    model: '',
+    image: victoriaImage,
     connectorType: 'IEC 62196 Type 2 Outlet',
     consumptionModel: {
-      vehicleEngineType: 'electric',
+      userEngineType: 'electric',
       constantSpeedConsumptionInkWhPerHundredkm: '80,14.8:100,18.5:120,22.7',
-      vehicleWeight: 1195,
-      currentChargeInkWh: 33,
+      userWeight: '18:00',
+      currentChargeInkWh: 'Monday',
       maxChargeInkWh: 33,
       auxiliaryPowerInkW: 1.7,
       accelerationEfficiency: 0.66,
@@ -62,15 +62,15 @@ const vehicles = [
     coordinates: null
   },
   {
-    make: 'Nissan',
-    model: 'Leaf',
-    image: leafImage,
+    make: 'Philip',
+    model: '',
+    image: philipImage,
     connectorType: 'SAE J1772',
     consumptionModel: {
-      vehicleEngineType: 'electric',
+      userEngineType: 'electric',
       constantSpeedConsumptionInkWhPerHundredkm: '100,18.7',
-      vehicleWeight: 2020,
-      currentChargeInkWh: 40,
+      userWeight: '18:00',
+      currentChargeInkWh: 'Monday',
       maxChargeInkWh: 40,
       auxiliaryPowerInkW: 1.7,
       accelerationEfficiency: 0.66,
@@ -82,4 +82,4 @@ const vehicles = [
   }
 ];
 
-export default vehicles;
+export default users;

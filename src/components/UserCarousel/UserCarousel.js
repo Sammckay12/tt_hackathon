@@ -4,25 +4,25 @@ import { CarouselProvider } from 'pure-react-carousel';
 import { util } from 'fm-demos-common';
 import Carousel from './Carousel';
 
-import './VehicleCarousel.css';
+import './UserCarousel.css';
 
-class VehicleCarousel extends Component {
+class UserCarousel extends Component {
 
   render () {
-    const { vehicles, currentSlide, onChange } = this.props;
+    const { users, currentSlide, onChange } = this.props;
     const iconSize = util.isIOS() ? 54 : 48;
 
     return (
       <CarouselProvider
-         className="VehicleCarousel"
+         className="UserCarousel"
          naturalSlideWidth={iconSize}
          naturalSlideHeight={iconSize}
-         totalSlides={vehicles.length}
+         totalSlides={users.length}
          currentSlide={currentSlide}
          >
         <Carousel
            iconSize={iconSize}
-           vehicles={vehicles}
+           users={users}
            onChange={onChange}
            />
       </CarouselProvider>
@@ -30,14 +30,14 @@ class VehicleCarousel extends Component {
   }
 }
 
-VehicleCarousel.propTypes = {
-  vehicles: PropTypes.array,
+UserCarousel.propTypes = {
+  users: PropTypes.array,
   currentSlide: PropTypes.number,
   onChange: PropTypes.func
 };
 
-VehicleCarousel.defaultProps = {
+UserCarousel.defaultProps = {
   currentSlide: 0
 };
 
-export default VehicleCarousel;
+export default UserCarousel;
