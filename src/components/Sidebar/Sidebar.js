@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import SlideInOut from '../../transitions/SlideInOut';
 import VehiclePanel from '../VehiclePanel/VehiclePanel';
 import SettingsPanel from '../SettingsPanel/SettingsPanel';
-import EVPanel from '../EVPanel/EVPanel';
-import { EV_API_BASE_URL } from '../../config';
 
 import './Sidebar.css';
 
@@ -15,9 +13,7 @@ class Sidebar extends Component {
       activePanel,
       vehicle,
       selectedVehicleIndex,
-      chargingpark,
-      onVehicleChange,
-      onDestinationSelect
+      onVehicleChange
     } = this.props;
 
     return (
@@ -34,14 +30,6 @@ class Sidebar extends Component {
           <VehiclePanel
              {...this.props}
              onSettings={this.onSettings}
-             />
-        </SlideInOut>
-        <SlideInOut in={activePanel === 'ev'}>
-          <EVPanel
-             baseUrl={EV_API_BASE_URL}
-             chargingpark={chargingpark}
-             onBack={this.onBack}
-             onRoute={onDestinationSelect}
              />
         </SlideInOut>
       </div>

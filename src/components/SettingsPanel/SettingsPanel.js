@@ -40,12 +40,12 @@ class SettingsPanel extends Component {
     return (
       <div className="SettingsPanel">
         <div className="SettingsPanel-header">
-          <button
+          {/* <button
              className="SettingsPanel-back-button"
              onClick={this.onBack}
              >
             <BackIcon/>
-          </button>
+          </button> */}
           <div className="SettingsPanel-title">{vehicle.make} {vehicle.model}</div>
         </div>
         <VehicleCarousel

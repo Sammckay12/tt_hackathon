@@ -30,7 +30,7 @@ const initialState = {
     fitBoundsOptions: {padding: {top: 35, right: 35, left: 370, bottom: 35}}
   },
   activeRoute: 'normal',
-  activePanel: 'vehicle',
+  activePanel: 'settings',
   selectedCountry: 'DK',
   showCountrySelector: false,
   showHelp: false,
