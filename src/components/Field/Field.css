@@ -1,0 +1,18 @@
+.Field {
+  display: flex;
+  align-items: center;
+  font-family: 'Helvetica Neue', Helvetica, 'sans-serif';
+  font-size: 0.9rem;
+}
+
+.Field-label {
+  color: #999;
+  flex: 1;
+}
+
+.Field-content {
+  margin-left: 10px;
+  color: #ddd;
+  display: flex;
+  align-items: center;
+}

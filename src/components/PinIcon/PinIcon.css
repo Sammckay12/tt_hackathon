@@ -1,0 +1,18 @@
+.PinIcon {
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  transform-origin: 50% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.PinIcon .fa {
+  color: #fff;
+  transform: rotate(45deg);
+}
+
+.PinIcon.shadow {
+  border: 2px solid rgba(0,0,0,0.3);
+}

@@ -1,0 +1,24 @@
+.GeolocateControl {
+  display: flex;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.GeolocateControl button {
+  background: rgba(0,0,0,0.7);
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  cursor: pointer;
+}
+
+.GeolocateControl-icon.fa {
+  font-size: 1rem;
+  color: #fff;
+  transition: color 0.2s;
+}
+
+.GeolocateControl.active .GeolocateControl-icon.fa {
+  color: #00d5fc;
+}

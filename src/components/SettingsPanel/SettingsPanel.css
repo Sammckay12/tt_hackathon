@@ -1,0 +1,51 @@
+.SettingsPanel {
+  width: 340px;
+  padding: 0;
+  background: rgba(0,0,0,0.83);
+  border-radius: 4px;
+  z-index: 1000;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.SettingsPanel-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 20px 15px 20px;
+}
+
+.SettingsPanel-title {
+  font-family: 'Gotham Medium', Helvetica, 'sans-serif';
+  font-size: 1rem;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.SettingsPanel-back-button {
+  position: absolute;
+  left: 20px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.SettingsPanel .Input__field {
+  width: 280px;
+}
+
+.SettingsPanel form {
+  max-height: 320px;
+  padding: 0 20px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.SettingsPanel .SettingsPanel-button-bar {
+  padding: 20px;
+}

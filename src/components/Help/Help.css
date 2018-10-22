@@ -1,0 +1,24 @@
+.Help-icon.geolocate-icon, .Help-icon.layers-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.Help-icon.geolocate-icon .fa {
+  font-size: 16px;
+  color: #fff;
+}
+
+.Help-icon.layers-icon .layer-stack-icon {
+  display: inline-block;
+  width: 18px;
+  height: 16px;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAgCAAAAABf+oVSAAABaUlEQVQ4y2PwJAIwYIj4BRBW1PDuSxMBRSG7/////2+FNz5F1a//g8G5cJyKArf+h4FX+TgUlT7/jwC/JmFT5L/+338UsMsfQ1H+o//o4HYCqiK/5X//Y4JPtciKsu/9xwr+LvZCKHr2Hxc4GQJXlHwPl6K/VQg3BezCruZRPsI6FzPjrt/YnOSC5HAzY2PjxFfoah4nGxtbesAVuYFUuZ5FUfJvtTVQ0NgZ4SbfGCDfbDGSmudZICVmzijhtNwcKFb+FaZmkz2Qa9I7Hy2cLrgDhYPvg5W8LgAZ43cOM5zepAAlbPcAWTscQWrav6GH036gwO8+kFzf5XIQ5XUcPZyAYDoonHbbGENB/WeQMev80dJT0Vug8L1gsBK3g2APlmCmzKhLQIkvpUA1lR9A4bQlEFvy9VkH0r84bjfYg9W4ckvbN1g47Q7BnaXSIIn4XQPezBl8BKjmQBihbD7rRhsRBQZRpQoWAABscVT9sFIhLwAAAABJRU5ErkJggg==);
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}

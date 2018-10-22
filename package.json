@@ -1,0 +1,40 @@
+{
+  "name": "ev-assistant",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@turf/turf": "^5.1.6",
+    "abortcontroller-polyfill": "^1.1.9",
+    "babel-polyfill": "^6.26.0",
+    "classnames": "^2.2.6",
+    "cross-fetch": "^2.2.2",
+    "fm-demos-common": "^1.0.0",
+    "font-awesome": "^4.7.0",
+    "inobounce": "^0.1.6",
+    "js-cache": "^1.0.3",
+    "legoland-ui": "^1.2.3",
+    "lodash": "^4.17.10",
+    "mapbox-gl": "^0.47.0-beta.1",
+    "moment": "^2.22.2",
+    "moment-duration-format": "^2.2.2",
+    "pure-react-carousel": "^1.13.2",
+    "react": "^16.4.1",
+    "react-datepicker": "^1.6.0",
+    "react-dom": "^16.4.1",
+    "react-mapbox-gl": "^3.8.0",
+    "react-onclickoutside": "^6.7.1",
+    "react-radio-group": "^3.0.3",
+    "react-scripts": "1.1.4",
+    "react-switch": "^3.0.4",
+    "react-transition-group": "^2.4.0",
+    "reactjs-popup": "^1.1.1",
+    "uuid": "^3.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "homepage": "./"
+}

@@ -1,0 +1,39 @@
+.BatteryIndicator {
+  display: flex;
+  align-items: center;
+}
+
+.BatteryIndicator-percentage, .BatteryIndicator-kWh {
+  color: #ddd;
+  font-family: 'Helvetica Neue', Helvetica, 'sans-serif';
+  font-size: 0.9rem;
+}
+
+.BatteryIndicator-kWh-units {
+  margin-left: 5px;
+  font-size: 0.8rem;
+}
+
+.BatteryIndicator-body {
+  margin-left: 8px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  width: 24px;
+  height: 14px;
+  padding: 2px;
+}
+
+.BatteryIndicator-charge {
+  background-color: #34b22d;
+  height: 8px;
+  transition: all 0.2s;
+}
+
+.BatteryIndicator-terminal {
+    margin-left: 1px;
+    background-color: #ddd;
+    width: 2px;
+    height: 6px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}

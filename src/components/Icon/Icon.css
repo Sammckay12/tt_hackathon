@@ -1,0 +1,13 @@
+.Icon {
+  display: inline-block;
+  border: none;
+  border-radius: 50%;
+  background-color: #fff;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.Icon.shadow {
+  border: 2px solid rgba(0,0,0,0.3);
+}

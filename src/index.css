@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+html, body {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #333;
+  touch-action: manipulation;
+}
+
+h1 {
+  font-family: 'Gotham Medium', Helvetica, 'sans-serif';
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
+  color: #ddd;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #666;
+  margin-bottom: 20px;
+}
+
+.mapboxgl-canvas {
+  overflow:hidden;
+}
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+  margin: 15px 15px 0 0;
+}
+
+.flex-horizontal {
+  display: flex;
+  align-items: center;
+}
+
+.flex-space-between {
+  justify-content: space-between;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.flex-flex-end {
+  justify-content: flex-end;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+button.button-ev {
+  padding: .4rem 1.2rem;
+  outline: none;
+  border-radius: 50px;
+  border: none;
+  font-family: Gotham, Helvetica, 'sans-serif';
+  font-size: 0.8rem;
+  color: #fff;
+  transition: background 0.5s, color 0.5s;
+  cursor: pointer;
+}
+
+button.button-ev-ghost {
+  background: transparent;
+  border: 1px solid #bbb;
+}
+
+button.button-ev-ghost:hover, button.button-ev-ghost:active {
+  background: #eee;
+  color: #000;
+}
+
+.InputLabel {
+  font-family: 'Gotham Medium', Helvetica, 'sans-serif';
+  color: #ddd;
+  margin-bottom: 5px;
+}
+
+.Input__field {
+  color: #fff;
+  background: #444;
+  border: none;
+}
+
+.Input__field:focus {
+  color: #fff;
+  background: #444;
+  border: none;
+}
+
+@supports (-webkit-overflow-scrolling: touch) {
+  html, body {
+    font-size: 18px;
+  }
+}

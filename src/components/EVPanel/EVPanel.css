@@ -1,0 +1,122 @@
+.EVPanel {
+  width: 340px;
+  padding: 0;
+  background: rgba(0,0,0,0.83);
+  border-radius: 4px;
+  z-index: 1000;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.EVPanel h1 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.EVPanel-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 20px 30px 20px;
+}
+
+.EVPanel-title {
+  font-family: 'Gotham Medium', Helvetica, 'sans-serif';
+  font-size: 0.9rem;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0 30px;
+}
+
+.EVPanel-back-button {
+  position: absolute;
+  left: 20px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.EVPanel section {
+  padding: 0 20px;
+}
+
+.EVPanel-info-line {
+  display: flex;
+  align-items: center;
+  font-family: 'Helvetica Neue', Helvetica, 'sans-serif';
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  color: #ddd;
+  margin-bottom: 15px;
+}
+
+.EVPanel-info-line .fa {
+  width: 16px;
+  margin-right: 10px;  
+}
+
+.EVPanel-charging-points-container {
+  min-height: 60px;
+  max-height: 150px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 20px;
+}
+
+.EVPanel-charging-point {
+  display: flex;
+  align-items: center;
+  font-family: 'Helvetica Neue', Helvetica, 'sans-serif';
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+  color: #ddd;
+  padding-bottom: 12px;
+}
+
+.EVPanel-charging-point-text {
+  flex: 1;
+}
+
+.EVPanel-charging-point-stats {
+  color: #999;
+  fontSize: 0.85rem;
+}
+
+.EVPanel-charging-point-status-indicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: #73c653;
+  border-radius: 50%;
+}
+
+.EVPanel-charging-point-status-indicator.available {
+  background: #73c653;
+}
+
+.EVPanel-charging-point-status-indicator.occupied {
+  background: #fd2e3b;
+}
+
+.EVPanel-charging-point-status-indicator.unknown {
+  background: #85929e;
+}
+
+.EVPanel .EVPanel-button-bar {
+  padding: 20px;
+}
+
+.EVPanel-status {
+  color: #ddd;
+}
+
+.EVPanel-error-message {
+  font-family: 'Helvetica Neue', Helvetica, 'sans-serif';
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #ddd;
+  margin-left: 15px;
+}
