@@ -91,7 +91,6 @@ class Map extends Component {
   renderRoutes () {
     const { routes } = this.props;
     const layers = [];
-    console.log("new routes", routes);
 
     if (routes) {
       if (routes['work']) {
@@ -143,8 +142,6 @@ class Map extends Component {
 
   renderMarkers () {
     const { user, destination, recommendations, destinations } = this.props;
-    console.log("destination", this.props.destination);
-    console.log("destinations", this.props.destinations);
     const markers = [];
 
     if (user) {

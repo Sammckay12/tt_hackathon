@@ -188,7 +188,7 @@ class SettingsPanel extends Component {
     console.log('timeFloat', timeFloat);
     console.log('dayNumber (Sunday is 0) - ', dayNumber);
 
-
+      this.props.predictRoutes()
     // user.coordinates = this.props.user.coordinates;
     //
     // this.props.onUserChange(user, selectedUserIndex);
