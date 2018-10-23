@@ -145,7 +145,7 @@ class SettingsPanel extends Component {
 
   createDateTimeString = () => {
     const { startDate, startTime } = this.state;
-    
+
     let year = startDate._d.getFullYear();
     let month = parseInt(startDate._d.getMonth()) + 1;
     let day = startDate._d.getDate();
@@ -155,16 +155,24 @@ class SettingsPanel extends Component {
     return year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + '00';
   }
 
+  createTimeFloat = () => {
+    const { startTime } = this.state
+
+    return parseFloat(startTime._d.getHours() + parseFloat((startTime._d.getMinutes() / 60).toFixed(1)))
+  }
+
   onApply = () => {
-    // const { user, selectedUserIndex } = this.state;
+    const { user, selectedUserIndex, startDate } = this.state;
+    // console.log('user', user);
+    // let dateTimeString = this.createDateTimeString();
+    // let unixTimeStamp = new Date(dateTimeString).getTime()/1000;
 
-    let dateTimeString = this.createDateTimeString();
-    let unixTimeStamp = new Date(dateTimeString).getTime()/1000;
+    let timeFloat = this.createTimeFloat();
+    let dayNumber = startDate._d.getDay();
+    console.log('timeFloat', timeFloat);
+    console.log('dayNumber (Sunday is 0) - ', dayNumber);
 
-    console.log('dateTimeString', dateTimeString);
-    console.log('unixTimeStamp', unixTimeStamp);
 
-    //
     // user.coordinates = this.props.user.coordinates;
     //
     // this.props.onUserChange(user, selectedUserIndex);
