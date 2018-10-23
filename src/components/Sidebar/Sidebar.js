@@ -12,6 +12,8 @@ class Sidebar extends Component {
       activePanel,
       user,
       selectedUserIndex,
+      searchFn,
+      onLocationSelect,
       onUserChange
     } = this.props;
 
@@ -21,6 +23,8 @@ class Sidebar extends Component {
           <SettingsPanel
              user={user}
              selectedUserIndex={selectedUserIndex}
+             searchFn={searchFn}
+             onLocationSelect={onLocationSelect}
              onBack={this.onBack}
              onUserChange={onUserChange}
              />
@@ -49,7 +53,7 @@ Sidebar.propTypes = {
   activeRoute: PropTypes.string,
   errorMessage: PropTypes.string,
   searchFn: PropTypes.func.isRequired,
-  onDestinationSelect: PropTypes.func,
+  onLocationSelect: PropTypes.func,
   onActiveRouteChange: PropTypes.func,
   onSearchClear: PropTypes.func,
   onUserChange: PropTypes.func,
