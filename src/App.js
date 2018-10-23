@@ -7,6 +7,7 @@ import Map from './components/Map/Map';
 import Sidebar from './components/Sidebar/Sidebar';
 import OnlineSearch from './services/OnlineSearch';
 import OnlineRouting from './services/OnlineRouting';
+import RouteTile from './components/RouteTile/RouteTile';
 import users from './data/users';
 
 import './App.css';
@@ -35,7 +36,8 @@ const initialState = {
   selectedCountry: 'DK',
   showCountrySelector: false,
   showHelp: false,
-  showBuildIt: false
+  showBuildIt: false,
+  activeRoutes : true
 };
 
 class App extends Component {
@@ -57,7 +59,8 @@ class App extends Component {
       selectedCountry,
       showCountrySelector,
       showHelp,
-      recommendations
+      recommendations,
+      activeRoutes
     } = this.state;
 
     return (
@@ -140,6 +143,12 @@ class App extends Component {
             onUserChange={this.onUserChange}
             onActivePanelChange={this.onActivePanelChange}
             />
+          { activeRoutes ? (
+            <RouteTile />
+          ) : (
+            null
+          )
+          }
         </div>
       </div>
     );

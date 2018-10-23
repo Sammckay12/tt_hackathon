@@ -1,0 +1,36 @@
+.RouteTile {
+  height: 75px;
+  width: 250px;
+  background: rgba(0,0,0,0.83);
+  border-radius: 4px;
+  position: fixed;
+  top: 85px;
+  right: 60px;
+}
+
+.MapPopup {
+  position: relative;
+  padding-top: 5px;
+  min-width: 100px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.MapPopup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+}
+
+.MapPopup .button {
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.MapPopup .button .fa {
+  font-size: 1.5em;
+}
