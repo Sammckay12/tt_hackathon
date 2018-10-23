@@ -1,7 +1,10 @@
-
 .Input__icon {
   color: #fff;
   margin-top: .4rem !important;
+}
+
+.DatePicker div.react-datepicker__day--selected {
+  background-color: red !important;
 }
 
 .SettingsPanel {
