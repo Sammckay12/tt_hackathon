@@ -90,8 +90,10 @@ class Map extends Component {
   renderRoutes () {
     const { routes } = this.props;
     const layers = [];
+    console.log("new routes", routes);
 
     if (routes) {
+      if (routes['work']) {
       layers.push(
         <Route
            id="route-work"
@@ -101,7 +103,9 @@ class Map extends Component {
            properties={{route: 'eco'}}
            onClick={this.onRouteClick}
            />
-      );
+        );
+      }
+      if (routes['normal']) {
       layers.push(
         <Route
            id="route-normal"
@@ -111,7 +115,9 @@ class Map extends Component {
            properties={{route: 'normal'}}
            onClick={this.onRouteClick}
            />
-      );
+        );
+      }
+      if (routes['gym']) {
       layers.push(
         <Route
            id="route-gym"
@@ -121,7 +127,8 @@ class Map extends Component {
            properties={{route: 'normal'}}
            onClick={this.onRouteClick}
            />
-      );
+        );
+      }
       this.avoidLayers = [...this.avoidLayers, 'route-normal'];
     }
 

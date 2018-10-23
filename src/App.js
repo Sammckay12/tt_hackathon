@@ -146,7 +146,7 @@ class App extends Component {
           <SlideInOut leftSlider in={activePanel !== 'settings'}>
             <RouteTile
               removeRoutes={this.removeRoutes}
-              routeLabel='Work'
+              routeLabel='home'
               routeEta='6:30pm'
               routeDelay='5' />
           </SlideInOut>
@@ -158,7 +158,23 @@ class App extends Component {
   }
 
   removeRoutes = (keepOnly) => {
-    console.log(this.state.routes);
+
+    if (keepOnly === 'work') {
+      this.setState({
+        routes: Object.assign({}, {work: this.state.routes[keepOnly]})
+      })
+    }
+    if (keepOnly === 'gym') {
+      this.setState({
+        routes: Object.assign({}, {gym: this.state.routes[keepOnly]})
+      })
+    }
+    if (keepOnly === 'home') {
+      this.setState({
+        routes: Object.assign({}, {normal: this.state.routes['normal']})
+      })
+    }
+    console.log("routes",this.state.routes[keepOnly]);
     console.log("hiiii", keepOnly);
   }
 
