@@ -20,6 +20,7 @@ const initialState = {
   selectedUserIndex,
   user,
   destination: null,
+  recommendations: [],
   routes: null,
   chargingpark: null,
   errorMessage: null,
@@ -55,7 +56,8 @@ class App extends Component {
       mapCenter,
       selectedCountry,
       showCountrySelector,
-      showHelp
+      showHelp,
+      recommendations
     } = this.state;
 
     return (
@@ -106,6 +108,7 @@ class App extends Component {
         <div className="App-content">
           <Map {...mapProps}
                user={user}
+               recommendations={recommendations}
                destination={destination}
                routes={routes}
                chargingpark={chargingpark}
@@ -144,9 +147,16 @@ class App extends Component {
 
   route () {
     const { user, destination, activeRoute } = this.state;
+
     if (user && destination) {
+      user.coordinates = {lat: 51.509626, lng: -0.124779}
+      destination.coordinates = {lat: 51.523742, lng: -0.123080 }
+      console.log("user", user);
+      console.log("destination", destination);
       OnlineRouting.batchRoute(user, destination)
         .then(routes => {
+          this.fetchRecommendations(user, routes)
+          console.log("ROUTES", routes);
           this.setState({errorMessage: null, routes, activePanel: 'user', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
         })
         .catch((reason) => {
@@ -154,6 +164,20 @@ class App extends Component {
           this.setState({errorMessage: msg});
         });
     }
+  }
+
+  fetchRecommendations = (user, routes) => {
+      fetch('http://localhost:3000/places/findTomTomPlaces', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/JSON',
+          'Content-Type': 'application/JSON'
+        },
+        body: JSON.stringify({
+          "routes": routes.normal.coordinates})
+    }).then((res) => res.json())
+    .then((data) =>  this.setState({recommendations: data}))
+    .catch((err)=>console.log(err))
   }
 
   onShowHelp = () => {
@@ -219,6 +243,7 @@ class App extends Component {
   }
 
   onDestinationChange = (destination) => {
+  console.log("destination", destination);
     this.setState({
       destination: Object.assign({}, this.state.destination, destination)
     }, () => this.route());

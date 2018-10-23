@@ -7,7 +7,7 @@ import Icon from '../Icon/Icon';
 import PinIcon from '../PinIcon/PinIcon';
 import MapPopup from '../MapPopup/MapPopup';
 import Route from '../Route/Route';
-import { ZoomControl, AttributionControl, CompassControl, util } from 'fm-demos-common';
+import { ZoomControl, AttributionControl, CompassControl } from 'fm-demos-common';
 import mapStyle from './mono.json';
 
 const ROUTE_ACTIVE_STYLE = {
@@ -37,6 +37,11 @@ class Map extends Component {
       popupCoordinates: null
     };
   }
+
+  componentWillReceiveProps = (nextProps) => {
+    
+  }
+
 
   render () {
     const {
@@ -81,8 +86,7 @@ class Map extends Component {
   }
 
   renderRoutes () {
-    const { routes, activeRoute } = this.props;
-    const before = util.findFirstSymbolLayerId(this.map);
+    const { routes } = this.props;
     const layers = [];
 
     if (routes) {
@@ -91,7 +95,6 @@ class Map extends Component {
            id="route-normal"
            key="route-normal"
            coordinates={routes.normal.coordinates}
-//           before={activeRoute === 'eco' ? 'route-eco-stroke' : before}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'normal'}}
            onClick={this.onRouteClick}
@@ -104,12 +107,12 @@ class Map extends Component {
   }
 
   getRouteStyle (routeType) {
-    const { user, routes, activeRoute } = this.props;
+    const { routes } = this.props;
     const route = routes[routeType];
   }
 
   renderMarkers () {
-    const { user, destination } = this.props;
+    const { user, destination, recommendations } = this.props;
     const markers = [];
 
     if (user) {
@@ -137,6 +140,21 @@ class Map extends Component {
           <PinIcon size="2rem" type="flag-checkered" shadow/>
         </DraggableMarker>
       );
+    }
+    if (recommendations) {
+      recommendations.forEach((place) => {
+        markers.push(
+          <Marker
+             coordinates={[place.geo[1], place.geo[0]]}
+             key={`${place._id.toString()}-temp-marker`}
+             anchor="bottom"
+             >
+            <PinIcon size="2rem" type="flag-checkered" color="#ababab" shadow/>
+          </Marker>
+        )
+
+      })
+      console.log("recommendations", recommendations);
     }
     return markers;
   }
@@ -184,6 +202,7 @@ class Map extends Component {
   }
 
   setDestinationPosition = (lngLat) => {
+  console.log("in here on routing", lngLat);
     this.setState({popupCoordinates: null});
 
     this.props.onDestinationChange && this.props.onDestinationChange({
