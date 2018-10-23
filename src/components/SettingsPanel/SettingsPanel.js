@@ -71,12 +71,12 @@ class SettingsPanel extends Component {
           </div>
         </form>
         <div className="SettingsPanel-button-bar flex-horizontal flex-flex-end">
-          <button
+          {/* <button
              className="button-ev button-ev-ghost"
              onClick={this.onDefaultSettings}
              >
             <span>Default Settings</span>
-          </button>
+          </button> */}
           <button
              className="button-ev button-ev-ghost"
              style={{marginLeft: 10}}
@@ -101,7 +101,7 @@ class SettingsPanel extends Component {
 
   onFieldChange = (e) => {
     const user = {...this.state.user};
-    let { target: { name, value }} = e;
+    let { target: { value }} = e;
     value = isNaN(value) ? value : parseFloat(value);
     this.setState({user});
   }

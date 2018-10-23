@@ -1,8 +1,6 @@
 import fetch from 'cross-fetch';
 import mapboxgl from 'mapbox-gl';
-import cache from 'js-cache';
 import _ from 'lodash';
-import objectToQueryString from '../util/objectToQueryString';
 import {TOMTOM_API_KEY, ONLINE_ROUTING_BASE_URL} from '../config';
 
 const batchRoute = (user, destination, useTraffic = true) => {
