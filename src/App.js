@@ -16,6 +16,27 @@ import './App.css';
 const selectedUserIndex = 0;
 const user = {...users[selectedUserIndex]};
 
+const predictedData = [
+{
+"confidence": 0.99,
+"label": "Work",
+"lat": 44.80438,
+"lon": 20.42887
+},
+{
+"confidence": 0.6,
+"label": "NoviMerkator",
+"lat": 44.82124,
+"lon": 20.41349
+},
+{
+"confidence": 0.48,
+"label": "MesareaBubreg",
+"lat": 44.80923,
+"lon": 20.41823
+}
+]
+
 const initialState = {
   selectedUserIndex,
   user,
@@ -148,6 +169,7 @@ class App extends Component {
             onActiveRouteChange={this.onActiveRouteChange}
             onSearchClear={this.onSearchClear}
             onUserChange={this.onUserChange}
+            predictRoutes={this.fetchPredictedDestinations}
             onActivePanelChange={this.onActivePanelChange}
             />
 
@@ -168,9 +190,18 @@ class App extends Component {
     );
   }
 
+  fetchPredictedDestinations = () => {
+    console.log("in predict", predictedData);
+    predictedData.forEach((loc) => {
+      loc['coordinates'] = {lng: loc.lon, lat: loc.lat}
+    })
+
+    console.log("predictedData", predictedData);
+    this.setState({destinations: predictedData}, () => {this.route()} )
+
+  }
+
   removeRoutes = (keepOnly) => {
-    console.log("this.state.routes[keepOnly]", this.state.routes["normal"]);
-  console.log("this.state.destinations", this.state.destinations);
 
     if (keepOnly === 'work') {
       this.setState({
@@ -201,16 +232,15 @@ class App extends Component {
   }
 
   route () {
-    const { user, destination, activeRoute } = this.state;
-
-    console.log("destination", destination);
-    let destination1 = {coordinates: {lng:20.403418, lat: 44.840034}, type: 'work'}
-    let destination2 = {coordinates: {lng:20.400883, lat: 44.827453}, type: 'gym'}
-    const destinations = [destination, destination1, destination2]
+    const { user, destinations, activeRoute } = this.state;
+    // 
+    // let destination1 = {coordinates: {lng:20.403418, lat: 44.840034}, type: 'work'}
+    // let destination2 = {coordinates: {lng:20.400883, lat: 44.827453}, type: 'gym'}
+    // const destinations = [destination, destination1, destination2]
+  console.log("destinations", destinations);
     this.setState({destinations: destinations})
 
     if (user && destinations) {
-      console.log("user", user);
       OnlineRouting.batchRoute(user, destinations)
         .then(routes => {
 

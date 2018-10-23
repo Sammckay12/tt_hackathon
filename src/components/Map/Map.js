@@ -38,13 +38,6 @@ class Map extends Component {
     };
   }
 
-  componentWillReceiveProps = (nextProps) => {
-  console.log("nextProps destinations", nextProps.destinations);
-    if (this.props.recommendations !== nextProps.recommendations) {
-      this.renderMarkers()
-    }
-  }
-
   render () {
     const {
       center,
@@ -91,7 +84,6 @@ console.log("user.coordinates",user.coordinates);
   renderRoutes () {
     const { routes } = this.props;
     const layers = [];
-    console.log("new routes", routes);
 
     if (routes) {
       if (routes['work']) {
@@ -143,8 +135,6 @@ console.log("user.coordinates",user.coordinates);
 
   renderMarkers () {
     const { user, destination, recommendations, destinations } = this.props;
-    console.log("destination", this.props.destination);
-    console.log("destinations", this.props.destinations);
     const markers = [];
 
     if (user) {
