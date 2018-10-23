@@ -9,27 +9,32 @@
   top: 85px;
   right: 60px;
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 .RouteTile-icon {
   color: #fff;
   width: 10%;
   height: 100%;
+  font-size: 16px;
 }
 
 .RouteTile-title {
   display: flex;
   color: #fff;
   margin-bottom: 5px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .RouteTile-details {
-  width: 100%;
+  width: 90%;
 }
 
 .RouteTile-text {
   color: #fff;
   font-size: 13px;
+  cursor: pointer;
 }
 
 .RouteTile-info {

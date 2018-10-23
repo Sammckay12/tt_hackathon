@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button, FaIcon } from 'legoland-ui';
+import { FaIcon } from 'legoland-ui';
 
 import './RouteTile.css';
 
@@ -10,7 +10,7 @@ class RouteTile extends Component {
     const { routeLabel, routeEta, routeDelay } = this.props;
 
     return (
-      <div className="RouteTile">
+      <button className="RouteTile">
         <FaIcon className="RouteTile-icon" type="home"/>
 
         <div className="RouteTile-details">
@@ -21,7 +21,7 @@ class RouteTile extends Component {
             <div style={{height: '5px', width: '15%', backgroundColor: 'red'}}></div>
           </div>
         </div>
-      </div>
+      </button>
     );
   }
 }
