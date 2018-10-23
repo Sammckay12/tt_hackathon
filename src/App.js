@@ -148,8 +148,9 @@ class App extends Component {
   route () {
     const { user, destination, activeRoute } = this.state;
     console.log("destination", destination);
-    let destination1 = {coordinates: 3}
-    const destinations = []
+    let destination1 = {coordinates: {lng:12.511934612966002, lat: 55.6832743734362}}
+    let destination2 = {coordinates: {lng:12.524555491155411, lat: 55.671928934634536}}
+    const destinations = [destination, destination1, destination2]
 
     if (user && destination) {
       console.log("user", user);
