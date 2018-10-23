@@ -1,24 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { InputLabel, Input } from 'legoland-ui';
+import { InputLabel, Input, DatePicker } from 'legoland-ui';
 import UserCarousel from '../UserCarousel/UserCarousel';
 import users from '../../data/users';
+import moment from 'moment';
 
+import 'react-datepicker/dist/react-datepicker.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './SettingsPanel.css';
 
 class SettingsPanel extends Component {
 
-  state = {
-    user: {...this.props.user},
-    selectedUserIndex: this.props.selectedUserIndex
+  constructor (props) {
+    super(props)
+    this.state = {
+      startDate: moment(),
+      user: {...this.props.user},
+      selectedUserIndex: this.props.selectedUserIndex,
+    };
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillReceiveProps (nextProps) {
     if (!_.isEqual(this.props.user, nextProps.user) || this.props.selectedUserIndex !== nextProps.selectedUserIndex) {
       this.setState({user: {...nextProps.user}, selectedUserIndex: nextProps.selectedUserIndex});
     }
+  }
+
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
+    console.log('date', this.state.startDate);
   }
 
   render () {
@@ -62,12 +76,17 @@ class SettingsPanel extends Component {
             <InputLabel>
               Day
             </InputLabel>
-            <Input
+            <DatePicker
+              dateFormat="DD/MM/YYYY"
+              selected={this.state.startDate}
+              onChange={this.handleChange}
+            />
+          {/*  <Input
                type="string"
                name="currentChargeInkWh"
-//               value={currentChargeInkWh}
+               value={currentChargeInkWh}
                onChange={this.onFieldChange}
-               />
+               /> */}
           </div>
         </form>
         <div className="SettingsPanel-button-bar flex-horizontal flex-flex-end">

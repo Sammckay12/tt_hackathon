@@ -1,3 +1,9 @@
+
+.Input__icon {
+  color: #fff;
+  margin-top: .4rem !important;
+}
+
 .SettingsPanel {
   width: 340px;
   padding: 0;
