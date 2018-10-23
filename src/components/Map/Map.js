@@ -61,7 +61,7 @@ class Map extends Component {
     const routes = this.renderRoutes();
     const markers = this.renderMarkers();
     const popup = this.renderPopup();
-console.log("user.coordinates",user.coordinates);
+
     return (
       <MapboxGl
          style={mapStyle}
