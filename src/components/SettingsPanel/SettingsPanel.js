@@ -27,7 +27,7 @@ class SettingsPanel extends Component {
     const { user, selectedUserIndex } = this.state;
     const {
       destination,
-      onDestinationSelect,
+      onLocationSelect,
       onSearchClear
     } = this.props;
 
@@ -98,7 +98,7 @@ class SettingsPanel extends Component {
             <Search
               value={destination ? destination.address.freeformAddress : ''}
               searchFn={this.onSearch}
-              onSelect={onDestinationSelect}
+              onSelect={onLocationSelect}
               onClear={onSearchClear}
               />
           </div>
@@ -158,7 +158,7 @@ SettingsPanel.propTypes = {
   selectedUserIndex: PropTypes.number,
   onBack: PropTypes.func.isRequired,
   searchFn: PropTypes.func.isRequired,
-  onDestinationSelect: PropTypes.func,
+  onLocationSelect: PropTypes.func,
   onActiveRouteChange: PropTypes.func,
   onSearchClear: PropTypes.func,
   onUserChange: PropTypes.func.isRequired
