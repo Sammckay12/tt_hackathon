@@ -39,7 +39,9 @@ class Map extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    
+    if (this.props.recommendations != nextProps.recommendations) {
+      this.renderMarkers()
+    }
   }
 
 
@@ -145,11 +147,12 @@ class Map extends Component {
       recommendations.forEach((place) => {
         markers.push(
           <Marker
-             coordinates={[place.geo[1], place.geo[0]]}
+            onClick={() => {this.clickedMarker(place)}}
+             coordinates={place.geo}
              key={`${place._id.toString()}-temp-marker`}
              anchor="bottom"
              >
-            <PinIcon size="2rem" type="flag-checkered" color="#ababab" shadow/>
+            <PinIcon size="2rem" type="star" color="#1faa74" shadow/>
           </Marker>
         )
 
@@ -157,6 +160,10 @@ class Map extends Component {
       console.log("recommendations", recommendations);
     }
     return markers;
+  }
+
+  clickedMarker = (place) => {
+  console.log("clickedMarker", place);
   }
 
   renderPopup () {
@@ -202,7 +209,6 @@ class Map extends Component {
   }
 
   setDestinationPosition = (lngLat) => {
-  console.log("in here on routing", lngLat);
     this.setState({popupCoordinates: null});
 
     this.props.onDestinationChange && this.props.onDestinationChange({
