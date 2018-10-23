@@ -39,6 +39,7 @@ class Map extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
+  console.log("nextProps destinations", nextProps.destinations);
     if (this.props.recommendations !== nextProps.recommendations) {
       this.renderMarkers()
     }
@@ -141,8 +142,9 @@ class Map extends Component {
   }
 
   renderMarkers () {
-    const { user, destination, recommendations } = this.props;
+    const { user, destination, recommendations, destinations } = this.props;
     console.log("destination", this.props.destination);
+    console.log("destinations", this.props.destinations);
     const markers = [];
 
     if (user) {
@@ -158,18 +160,20 @@ class Map extends Component {
         </DraggableMarker>
       );
     }
-    if (destination) {
-      markers.push(
-        <DraggableMarker
-           coordinates={destination.coordinates}
-           key={`${destination.coordinates.toString()}-destination-marker`}
-           anchor="bottom"
-           onDragEnd={this.setDestinationPosition}
-           draggable
-           >
-          <PinIcon size="2rem" type="flag-checkered" shadow/>
-        </DraggableMarker>
-      );
+    if (destinations) {
+      destinations.forEach((destination) => {
+        markers.push(
+          <DraggableMarker
+            coordinates={destination.coordinates}
+            key={`${destination.coordinates.toString()}-destination-marker`}
+            anchor="bottom"
+            onDragEnd={this.setDestinationPosition}
+            draggable
+            >
+            <PinIcon size="2rem" type="flag-checkered" shadow/>
+          </DraggableMarker>
+        );
+      })
     }
     if (recommendations) {
       recommendations.forEach((place) => {

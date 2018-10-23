@@ -10,7 +10,7 @@ const users = [
     name: 'Emma',
     userId: 'abc',
     image: emmaImage,
-    coordinates: {lng: 20.4327543, lat: 44.805575}
+    coordinates: {lng: 20.434043, lat: 44.771401}
   },
   {
     name: 'Henry',

@@ -61,6 +61,7 @@ class App extends Component {
       recommendations,
       activeRoutes
     } = this.state;
+    console.log("user", user);
 
     return (
       <div className="App">
@@ -112,6 +113,7 @@ class App extends Component {
                user={user}
                recommendations={recommendations}
                destination={destination}
+               destinations={this.state.destinations}
                routes={routes}
                chargingpark={chargingpark}
                activeRoute={activeRoute}
@@ -158,10 +160,12 @@ class App extends Component {
   }
 
   removeRoutes = (keepOnly) => {
+    console.log("this.state.routes[keepOnly]", this.state.routes["normal"]);
+  console.log("this.state.destinations", this.state.destinations);
 
     if (keepOnly === 'work') {
       this.setState({
-        routes: Object.assign({}, {work: this.state.routes[keepOnly]})
+        routes: Object.assign({}, {work: this.state.routes[keepOnly]}),
       })
     }
     if (keepOnly === 'gym') {
@@ -171,7 +175,8 @@ class App extends Component {
     }
     if (keepOnly === 'home') {
       this.setState({
-        routes: Object.assign({}, {normal: this.state.routes['normal']})
+        routes: Object.assign({}, {normal: this.state.routes['normal']}),
+        destinations: [this.state.destinations[0]]
       })
     }
     console.log("routes",this.state.routes[keepOnly]);
@@ -181,9 +186,10 @@ class App extends Component {
   route () {
     const { user, destination, activeRoute } = this.state;
     console.log("destination", destination);
-    let destination1 = {coordinates: {lng:12.511934612966002, lat: 55.6832743734362}}
-    let destination2 = {coordinates: {lng:12.824555491155411, lat: 56.271928934634536}}
+    let destination1 = {coordinates: {lng:20.403418, lat: 44.840034}, type: 'work'}
+    let destination2 = {coordinates: {lng:20.400883, lat: 44.827453}, type: 'gym'}
     const destinations = [destination, destination1, destination2]
+    this.setState({destinations: destinations})
 
     if (user && destinations) {
       console.log("user", user);
