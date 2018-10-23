@@ -8,6 +8,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import OnlineSearch from './services/OnlineSearch';
 import OnlineRouting from './services/OnlineRouting';
 import RouteTile from './components/RouteTile/RouteTile';
+import SlideInOut from './transitions/SlideInOut';
 import users from './data/users';
 
 import './App.css';
@@ -141,12 +142,12 @@ class App extends Component {
             onUserChange={this.onUserChange}
             onActivePanelChange={this.onActivePanelChange}
             />
-          { activeRoutes ? (
+
+          <SlideInOut leftSlider in={activePanel !== 'settings'}>
             <RouteTile routeLabel='Home' routeEta='6:30pm' routeDelay='5' />
-          ) : (
-            null
-          )
-          }
+          </SlideInOut>
+
+
         </div>
       </div>
     );
@@ -163,7 +164,7 @@ class App extends Component {
       OnlineRouting.batchRoute(user, destination)
         .then(routes => {
           this.fetchRecommendations(user, routes)
-          this.setState({errorMessage: null, routes, activePanel: 'settings', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
+          this.setState({errorMessage: null, routes, activePanel: 'user', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
         })
         .catch((reason) => {
           const msg = `${reason.message}. Try moving the either the route start or end point`;

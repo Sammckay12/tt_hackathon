@@ -19,16 +19,14 @@ class Sidebar extends Component {
 
     return (
       <div className="Sidebar">
-        <SlideInOut in={activePanel === 'settings'}>
-          <SettingsPanel
-             user={user}
-             selectedUserIndex={selectedUserIndex}
-             searchFn={searchFn}
-             onLocationSelect={onLocationSelect}
-             onBack={this.onBack}
-             onUserChange={onUserChange}
-             />
-        </SlideInOut>
+        <SettingsPanel
+           user={user}
+           selectedUserIndex={selectedUserIndex}
+           searchFn={searchFn}
+           onLocationSelect={onLocationSelect}
+           onBack={this.onBack}
+           onUserChange={onUserChange}
+           />
       </div>
     );
   }

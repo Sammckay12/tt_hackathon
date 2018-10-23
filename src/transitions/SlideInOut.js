@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 
-const SlideInOut = ({children, duration, in: inProp}) => {
+const SlideInOut = ({children, duration, in: inProp, leftSlider}) => {
   const defaultStyle = {
     position: 'absolute',
     transition: `transform ${duration}ms ease-in-out, opacity ${duration}ms ease-in-out`,
-    top: 0
+    top: 0,
+    right: leftSlider ? 0 : null
   };
 
   const transitionStyles = {
     entering: {
-      transform: 'translate(-100%)',
+      transform: 'translate(+100%)',
       opacity: 0
     },
     entered:  {
