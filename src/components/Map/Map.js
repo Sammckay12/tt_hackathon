@@ -38,6 +38,13 @@ class Map extends Component {
     };
   }
 
+  componentWillReceiveProps = (nextProps) => {
+    if (this.props.recommendations !== nextProps.recommendations) {
+      this.renderMarkers()
+    }
+  }
+
+
   render () {
     const {
       center,
@@ -107,7 +114,7 @@ class Map extends Component {
   }
 
   renderMarkers () {
-    const { user, destination } = this.props;
+    const { user, destination, recommendations } = this.props;
     const markers = [];
 
     if (user) {
@@ -136,7 +143,26 @@ class Map extends Component {
         </DraggableMarker>
       );
     }
+    if (recommendations) {
+      recommendations.forEach((place) => {
+        markers.push(
+          <Marker
+            onClick={() => {this.clickedMarker(place)}}
+             coordinates={place.geo}
+             key={`${place._id.toString()}-temp-marker`}
+             anchor="bottom"
+             >
+            <PinIcon size="2rem" type="star" color="#1faa74" shadow/>
+          </Marker>
+        )
+
+      })
+    }
     return markers;
+  }
+
+  clickedMarker = (place) => {
+  console.log("clickedMarker", place);
   }
 
   renderPopup () {

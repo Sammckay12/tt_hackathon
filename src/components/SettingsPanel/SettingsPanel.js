@@ -1,26 +1,47 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { InputLabel, Input } from 'legoland-ui';
 import Search from '../Search/Search';
+import { InputLabel, Input, DatePicker } from 'legoland-ui';
 import UserCarousel from '../UserCarousel/UserCarousel';
 import users from '../../data/users';
-
-
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './SettingsPanel.css';
 
 class SettingsPanel extends Component {
 
-  state = {
-    user: {...this.props.user},
-    selectedUserIndex: this.props.selectedUserIndex
+  constructor (props) {
+    super(props)
+    this.state = {
+      startDate: moment(),
+      startTime: moment(),
+      user: {...this.props.user},
+      selectedUserIndex: this.props.selectedUserIndex,
+    };
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
   }
 
   componentWillReceiveProps (nextProps) {
     if (!_.isEqual(this.props.user, nextProps.user) || this.props.selectedUserIndex !== nextProps.selectedUserIndex) {
       this.setState({user: {...nextProps.user}, selectedUserIndex: nextProps.selectedUserIndex});
     }
+  }
+
+  handleDateChange(date) {
+    this.setState({
+      startDate: date
+    });
+    console.log('date', this.state.startDate);
+  }
+
+  handleTimeChange(time) {
+    this.setState({
+      startTime: time
+    });
+    console.log('time', this.state.startTime);
   }
 
   render () {
@@ -57,24 +78,38 @@ class SettingsPanel extends Component {
             <InputLabel>
               Time
             </InputLabel>
-            <Input
+            <DatePicker
+              timeIntervals={15}
+              dateFormat="LT"
+              timeCaption="Time"
+              showTimeSelect
+              showTimeSelectOnly
+              selected={this.state.startTime}
+              onChange={this.handleTimeChange}
+            />
+            {/*  <Input
                type="string"
                step="1"
                name="userWeight"
 //               value={userWeight}
                onChange={this.onFieldChange}
-               />
+               /> */}
           </div>
           <div className="mb-20">
             <InputLabel>
               Day
             </InputLabel>
-            <Input
+            <DatePicker
+              dateFormat="DD/MM/YYYY"
+              selected={this.state.startDate}
+              onChange={this.handleDateChange}
+            />
+          {/*  <Input
                type="string"
                name="currentChargeInkWh"
-//               value={currentChargeInkWh}
+               value={currentChargeInkWh}
                onChange={this.onFieldChange}
-               />
+               /> */}
           </div>
         </form>
         <div className="SettingsPanel-button-bar flex-horizontal flex-flex-end">
@@ -124,13 +159,40 @@ class SettingsPanel extends Component {
     this.setState({user});
   }
 
+  createDateTimeString = () => {
+    const { startDate, startTime } = this.state;
+
+    let year = startDate._d.getFullYear();
+    let month = parseInt(startDate._d.getMonth()) + 1;
+    let day = startDate._d.getDate();
+    let hours = startTime._d.getHours();
+    let minutes = startTime._d.getMinutes();
+
+    return year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + '00';
+  }
+
+  createTimeFloat = () => {
+    const { startTime } = this.state
+
+    return parseFloat(startTime._d.getHours() + parseFloat((startTime._d.getMinutes() / 60).toFixed(1)))
+  }
+
   onApply = () => {
-    const { user, selectedUserIndex } = this.state;
+    const { user, selectedUserIndex, startDate } = this.state;
+    // console.log('user', user);
+    // let dateTimeString = this.createDateTimeString();
+    // let unixTimeStamp = new Date(dateTimeString).getTime()/1000;
 
-    user.coordinates = this.props.user.coordinates;
+    let timeFloat = this.createTimeFloat();
+    let dayNumber = startDate._d.getDay();
+    console.log('timeFloat', timeFloat);
+    console.log('dayNumber (Sunday is 0) - ', dayNumber);
 
-    this.props.onUserChange(user, selectedUserIndex);
-    this.props.onBack();
+
+    // user.coordinates = this.props.user.coordinates;
+    //
+    // this.props.onUserChange(user, selectedUserIndex);
+    // this.props.onBack();
   }
 
   onDefaultSettings = () => {

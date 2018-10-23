@@ -18,6 +18,7 @@ const initialState = {
   selectedUserIndex,
   user,
   destination: null,
+  recommendations: [],
   routes: null,
   chargingpark: null,
   errorMessage: null,
@@ -53,7 +54,8 @@ class App extends Component {
       mapCenter,
       selectedCountry,
       showCountrySelector,
-      showHelp
+      showHelp,
+      recommendations
     } = this.state;
 
     return (
@@ -104,6 +106,7 @@ class App extends Component {
         <div className="App-content">
           <Map {...mapProps}
                user={user}
+               recommendations={recommendations}
                destination={destination}
                routes={routes}
                chargingpark={chargingpark}
@@ -142,9 +145,15 @@ class App extends Component {
 
   route () {
     const { user, destination, activeRoute } = this.state;
+    console.log("destination", destination);
+    let destination1 = {coordinates: 3}
+    const destinations = []
+
     if (user && destination) {
+      console.log("user", user);
       OnlineRouting.batchRoute(user, destination)
         .then(routes => {
+          this.fetchRecommendations(user, routes)
           this.setState({errorMessage: null, routes, activePanel: 'settings', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
         })
         .catch((reason) => {
@@ -152,6 +161,20 @@ class App extends Component {
           this.setState({errorMessage: msg});
         });
     }
+  }
+
+  fetchRecommendations = (user, routes) => {
+      fetch('http://localhost:3000/places/findTomTomPlaces', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/JSON',
+          'Content-Type': 'application/JSON'
+        },
+        body: JSON.stringify({
+          "routes": routes.normal.coordinates})
+    }).then((res) => res.json())
+    .then((data) =>  this.setState({recommendations: data}))
+    .catch((err)=>console.log(err))
   }
 
   onShowHelp = () => {
@@ -217,6 +240,7 @@ class App extends Component {
   }
 
   onDestinationChange = (destination) => {
+  console.log("destination", destination);
     this.setState({
       destination: Object.assign({}, this.state.destination, destination)
     }, () => this.route());
