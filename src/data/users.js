@@ -10,25 +10,25 @@ const users = [
     name: 'Emma',
     userId: 'abc',
     image: emmaImage,
-    coordinates: {lng: 20.434043, lat: 44.771401}
+    coordinates: {lng: 4.9059247, lat: 52.3763683}
   },
   {
     name: 'Henry',
     userId: 'def',
     image: henryImage,
-    coordinates: {lng: 10.4327543, lat: 44.805575}
+    coordinates: {lng: 20.4327543, lat: 44.805575}
   },
   {
     name: 'Victoria',
     userId: 'ghi',
     image: victoriaImage,
-    coordinates: {lng: 20.4327543, lat: 34.805575}
+    coordinates: {lng: 13.4595288, lat: 52.4953612}
   },
   {
     name: 'Philip',
     userId: 'jkl',
     image: philipImage,
-    coordinates: {lng: 10.4327543, lat: 34.805575}
+    coordinates: {lng: 19.4470436, lat: 51.7593518}
   }
 ];
 

@@ -36,7 +36,10 @@ const initialState = {
   showCountrySelector: false,
   showHelp: false,
   showBuildIt: false,
-  activeRoutes : true
+  activeRoutes : true,
+  showRoute1: false,
+  showRoute2: false,
+  showRoute3: false
 };
 
 class App extends Component {
@@ -59,7 +62,10 @@ class App extends Component {
       showCountrySelector,
       showHelp,
       recommendations,
-      activeRoutes
+      activeRoutes,
+      showRoute1,
+      showRoute2,
+      showRoute3
     } = this.state;
     console.log("user", user);
 
@@ -145,14 +151,17 @@ class App extends Component {
             onActivePanelChange={this.onActivePanelChange}
             />
 
-          <SlideInOut leftSlider in={activePanel !== 'settings'}>
-            <RouteTile
-              removeRoutes={this.removeRoutes}
-              routeLabel='home'
-              routeEta='6:30pm'
-              routeDelay='5' />
+          <SlideInOut leftSlider in={showRoute1}>
+            <RouteTile routes={routes} routeLabel={'home'} removeRoutes={this.removeRoutes} />
           </SlideInOut>
 
+          <SlideInOut leftSlider in={showRoute2}>
+            <RouteTile routes={routes} routeLabel={'work'} removeRoutes={this.removeRoutes} marginTop={{marginTop: 70}} />
+          </SlideInOut>
+
+          <SlideInOut leftSlider in={showRoute3}>
+            <RouteTile routes={routes} routeLabel={'gym'} removeRoutes={this.removeRoutes} marginTop={{marginTop: 140}} />
+          </SlideInOut>
 
         </div>
       </div>
@@ -166,16 +175,24 @@ class App extends Component {
     if (keepOnly === 'work') {
       this.setState({
         routes: Object.assign({}, {work: this.state.routes[keepOnly]}),
+        showRoute1: false,
+        showRoute3: false,
+        destinations: [this.state.destinations[1]]
       })
     }
     if (keepOnly === 'gym') {
       this.setState({
-        routes: Object.assign({}, {gym: this.state.routes[keepOnly]})
+        routes: Object.assign({}, {gym: this.state.routes[keepOnly]}),
+        showRoute1: false,
+        showRoute2: false,
+        destinations: [this.state.destinations[2]]
       })
     }
     if (keepOnly === 'home') {
       this.setState({
         routes: Object.assign({}, {normal: this.state.routes['normal']}),
+        showRoute2: false,
+        showRoute3: false,
         destinations: [this.state.destinations[0]]
       })
     }
@@ -185,6 +202,7 @@ class App extends Component {
 
   route () {
     const { user, destination, activeRoute } = this.state;
+
     console.log("destination", destination);
     let destination1 = {coordinates: {lng:20.403418, lat: 44.840034}, type: 'work'}
     let destination2 = {coordinates: {lng:20.400883, lat: 44.827453}, type: 'gym'}
@@ -198,7 +216,7 @@ class App extends Component {
 
           // this.fetchRecommendations(user, routes)
           console.log("ROUTES", routes);
-          this.setState({errorMessage: null, routes, activePanel: 'user', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
+          this.setState({showRoute1: true, showRoute2: true, showRoute3: true, errorMessage: null, routes, activePanel: 'user', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
         })
         .catch((reason) => {
           const msg = `${reason.message}. Try moving the either the route start or end point`;
@@ -284,7 +302,6 @@ class App extends Component {
   }
 
   onDestinationChange = (destination) => {
-  console.log("destination", destination);
     this.setState({
       destination: Object.assign({}, this.state.destination, destination)
     }, () => this.route());
