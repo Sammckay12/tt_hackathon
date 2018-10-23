@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import Search from '../Search/Search';
 import { InputLabel, Input, DatePicker } from 'legoland-ui';
 import UserCarousel from '../UserCarousel/UserCarousel';
 import users from '../../data/users';
 import moment from 'moment';
-
 import 'react-datepicker/dist/react-datepicker.css';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './SettingsPanel.css';
@@ -46,6 +46,11 @@ class SettingsPanel extends Component {
 
   render () {
     const { user, selectedUserIndex } = this.state;
+    const {
+      destination,
+      onLocationSelect,
+      onSearchClear
+    } = this.props;
 
     return (
       <div className="SettingsPanel">
@@ -121,6 +126,17 @@ class SettingsPanel extends Component {
              >
             <span>Apply</span>
           </button>
+        ></div>
+        <div className="search-section">
+          <h1>Set location</h1>
+          <div>
+            <Search
+              value={destination ? destination.address.freeformAddress : ''}
+              searchFn={this.onSearch}
+              onSelect={onLocationSelect}
+              onClear={onSearchClear}
+              />
+          </div>
         </div>
       </div>
     );
@@ -184,6 +200,13 @@ class SettingsPanel extends Component {
     this.setState({user});
   }
 
+  onSearch = (query) => {
+    return this.props.searchFn(query)
+      .catch(e => {
+        console.log(e.message);
+      });
+  }
+
   onBack = () => {
     this.setState(
       {user: this.props.user, selectedUserIndex: this.props.selectedUserIndex},
@@ -196,6 +219,10 @@ SettingsPanel.propTypes = {
   user: PropTypes.object.isRequired,
   selectedUserIndex: PropTypes.number,
   onBack: PropTypes.func.isRequired,
+  searchFn: PropTypes.func.isRequired,
+  onLocationSelect: PropTypes.func,
+  onActiveRouteChange: PropTypes.func,
+  onSearchClear: PropTypes.func,
   onUserChange: PropTypes.func.isRequired
 };
 

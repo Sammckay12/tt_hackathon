@@ -11,10 +11,8 @@ import users from './data/users';
 
 import './App.css';
 
-const startPos = new mapboxgl.LngLat(12.575106, 55.638140);
 const selectedUserIndex = 0;
 const user = {...users[selectedUserIndex]};
-user.coordinates = startPos;
 
 const initialState = {
   selectedUserIndex,
@@ -25,14 +23,14 @@ const initialState = {
   chargingpark: null,
   errorMessage: null,
   mapProps: {
-    center: startPos,
+    center: user.coordinates,
     zoom: [10],
     fitBounds: null,
     fitBoundsOptions: {padding: {top: 35, right: 35, left: 370, bottom: 35}}
   },
   activeRoute: 'normal',
   activePanel: 'settings',
-  selectedCountry: 'DK',
+  selectedCountry: 'GB',
   showCountrySelector: false,
   showHelp: false,
   showBuildIt: false
@@ -78,7 +76,7 @@ class App extends Component {
           <Help/>
         </Dialog>
         <Header>
-          <Logo product="EV Assistant"/>
+          <Logo product="GO Predict"/>
           <div className="Header-spacer"/>
           <Button
              className="ResetButton"
@@ -87,13 +85,13 @@ class App extends Component {
              >
             Reset
           </Button>
-          <Button
+          {/* <Button
              className="BuildItButton"
              onClick={this.onShowBuildIt}
              ghost
              >
             Build It!
-          </Button>
+          </Button> */}
           <Button
              className="HelpButton"
              icon={<FaIcon type="question"/>}
@@ -134,7 +132,7 @@ class App extends Component {
             activeRoute={activeRoute}
             errorMessage={errorMessage}
             searchFn={(query) => OnlineSearch.search(query, mapCenter)}
-            onDestinationSelect={this.onDestinationSelect}
+            onLocationSelect={this.onLocationSelect}
             onActiveRouteChange={this.onActiveRouteChange}
             onSearchClear={this.onSearchClear}
             onUserChange={this.onUserChange}
@@ -156,8 +154,7 @@ class App extends Component {
       OnlineRouting.batchRoute(user, destination)
         .then(routes => {
           this.fetchRecommendations(user, routes)
-          console.log("ROUTES", routes);
-          this.setState({errorMessage: null, routes, activePanel: 'user', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
+          this.setState({errorMessage: null, routes, activePanel: 'settings', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
         })
         .catch((reason) => {
           const msg = `${reason.message}. Try moving the either the route start or end point`;
@@ -249,10 +246,10 @@ class App extends Component {
     }, () => this.route());
   }
 
-  onDestinationSelect = (destination) => {
+  onLocationSelect = (location) => {
     this.setState({
-      destination: Object.assign({}, this.state.destination, destination),
-      mapProps: Object.assign({}, this.state.mapProps, {center: destination.coordinates})
+      user: Object.assign({}, this.state.user, {coordinates: location.coordinates}),
+      mapProps: Object.assign({}, this.state.mapProps, {center: location.coordinates})
     }, () => this.route());
   }
 
