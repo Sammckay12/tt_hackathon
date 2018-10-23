@@ -38,14 +38,6 @@ class Map extends Component {
     };
   }
 
-  componentWillReceiveProps = (nextProps) => {
-  console.log("nextProps destinations", nextProps.destinations);
-    if (this.props.recommendations !== nextProps.recommendations) {
-      this.renderMarkers()
-    }
-  }
-
-
   render () {
     const {
       center,
