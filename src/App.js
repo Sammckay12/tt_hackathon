@@ -144,13 +144,22 @@ class App extends Component {
             />
 
           <SlideInOut leftSlider in={activePanel !== 'settings'}>
-            <RouteTile routeLabel='Home' routeEta='6:30pm' routeDelay='5' />
+            <RouteTile
+              removeRoutes={this.removeRoutes}
+              routeLabel='Work'
+              routeEta='6:30pm'
+              routeDelay='5' />
           </SlideInOut>
 
 
         </div>
       </div>
     );
+  }
+
+  removeRoutes = (keepOnly) => {
+    console.log(this.state.routes);
+    console.log("hiiii", keepOnly);
   }
 
   route () {

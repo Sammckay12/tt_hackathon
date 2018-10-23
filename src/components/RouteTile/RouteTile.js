@@ -10,7 +10,9 @@ class RouteTile extends Component {
     const { routeLabel, routeEta, routeDelay } = this.props;
 
     return (
-      <button className="RouteTile">
+      <button
+        onClick={() => {this.props.removeRoutes(routeLabel)}}
+        className="RouteTile">
         <FaIcon className="RouteTile-icon" type="home"/>
 
         <div className="RouteTile-details">
