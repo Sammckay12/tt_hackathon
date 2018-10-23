@@ -135,6 +135,7 @@ class Map extends Component {
 
   renderMarkers () {
     const { user, destination, recommendations } = this.props;
+    console.log("destination", this.props.destination);
     const markers = [];
 
     if (user) {
