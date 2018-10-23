@@ -306,13 +306,14 @@ class App extends Component {
     this.setState({mapCenter: lngLat});
   }
 
-  onUserChange = (user, index) => {
+  onUserChange = (index) => {
     const selectedUserIndex = isNaN(index) ? this.state.selectedUserIndex : index;
+    const user = users[selectedUserIndex];
 
     this.setState({
       selectedUserIndex,
-      user: Object.assign({}, this.state.user, user)
-    }, () => this.route());
+      user
+    });
   }
 
   onActivePanelChange = (activePanel) => {
