@@ -94,9 +94,29 @@ class Map extends Component {
     if (routes) {
       layers.push(
         <Route
+           id="route-work"
+           key="route-work"
+           coordinates={routes.work.coordinates}
+           {...(this.getRouteStyle('normal'))}
+           properties={{route: 'eco'}}
+           onClick={this.onRouteClick}
+           />
+      );
+      layers.push(
+        <Route
            id="route-normal"
            key="route-normal"
            coordinates={routes.normal.coordinates}
+           {...(this.getRouteStyle('normal'))}
+           properties={{route: 'normal'}}
+           onClick={this.onRouteClick}
+           />
+      );
+      layers.push(
+        <Route
+           id="route-gym"
+           key="route-gym"
+           coordinates={routes.gym.coordinates}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'normal'}}
            onClick={this.onRouteClick}

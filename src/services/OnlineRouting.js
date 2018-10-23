@@ -5,13 +5,17 @@ import {TOMTOM_API_KEY, ONLINE_ROUTING_BASE_URL} from '../config';
 
 const batchRoute = (user, destination, useTraffic = true) => {
   const batchItems = [];
-  const points = [mapboxgl.LngLat.convert(user.coordinates), mapboxgl.LngLat.convert(destination.coordinates)].map(p => `${p.lat},${p.lng}`).join(':');
-
+  const home = [mapboxgl.LngLat.convert(user.coordinates), mapboxgl.LngLat.convert(destination[0].coordinates)].map(p => `${p.lat},${p.lng}`).join(':');
+  const work = [mapboxgl.LngLat.convert(user.coordinates), mapboxgl.LngLat.convert(destination[1].coordinates)].map(p => `${p.lat},${p.lng}`).join(':');
+  const gym = [mapboxgl.LngLat.convert(user.coordinates), mapboxgl.LngLat.convert(destination[2].coordinates)].map(p => `${p.lat},${p.lng}`).join(':');
   batchItems.push({
-    query: `/calculateRoute/${points}/json?routeType=fastest&traffic=${useTraffic}`
+    query: `/calculateRoute/${home}/json?routeType=fastest&traffic=${useTraffic}`
   });
   batchItems.push({
-    query: `/calculateRoute/${points}/json?routeType=eco&traffic=${useTraffic}`
+    query: `/calculateRoute/${work}/json?routeType=fastest&traffic=${useTraffic}`
+  });
+  batchItems.push({
+    query: `/calculateRoute/${gym}/json?routeType=fastest&traffic=${useTraffic}`
   });
 
   const url = `${ONLINE_ROUTING_BASE_URL}/batch/sync/json?key=${TOMTOM_API_KEY}`;
@@ -39,7 +43,9 @@ const batchRoute = (user, destination, useTraffic = true) => {
       }
 
       const normal = processRoute(batchItems[0].response.routes[0]);
-      return { normal };
+      const work = processRoute(batchItems[1].response.routes[0]);
+      const gym = processRoute(batchItems[2].response.routes[0]);
+      return { normal, work, gym };
     });
 };
 

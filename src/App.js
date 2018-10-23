@@ -149,14 +149,15 @@ class App extends Component {
     const { user, destination, activeRoute } = this.state;
     console.log("destination", destination);
     let destination1 = {coordinates: {lng:12.511934612966002, lat: 55.6832743734362}}
-    let destination2 = {coordinates: {lng:12.524555491155411, lat: 55.671928934634536}}
+    let destination2 = {coordinates: {lng:12.824555491155411, lat: 56.271928934634536}}
     const destinations = [destination, destination1, destination2]
 
-    if (user && destination) {
+    if (user && destinations) {
       console.log("user", user);
-      OnlineRouting.batchRoute(user, destination)
+      OnlineRouting.batchRoute(user, destinations)
         .then(routes => {
-          this.fetchRecommendations(user, routes)
+
+          // this.fetchRecommendations(user, routes)
           console.log("ROUTES", routes);
           this.setState({errorMessage: null, routes, activePanel: 'user', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
         })
