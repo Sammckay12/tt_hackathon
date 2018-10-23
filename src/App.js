@@ -144,7 +144,7 @@ class App extends Component {
             onActivePanelChange={this.onActivePanelChange}
             />
           { activeRoutes ? (
-            <RouteTile />
+            <RouteTile routeLabel='Home' routeEta='6:30pm' routeDelay='5' />
           ) : (
             null
           )
