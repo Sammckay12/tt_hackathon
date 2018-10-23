@@ -36,7 +36,10 @@ const initialState = {
   showCountrySelector: false,
   showHelp: false,
   showBuildIt: false,
-  activeRoutes : true
+  activeRoutes : true,
+  showRoute1: false,
+  showRoute2: false,
+  showRoute3: false
 };
 
 class App extends Component {
@@ -59,7 +62,10 @@ class App extends Component {
       showCountrySelector,
       showHelp,
       recommendations,
-      activeRoutes
+      activeRoutes,
+      showRoute1,
+      showRoute2,
+      showRoute3
     } = this.state;
 
     return (
@@ -143,10 +149,18 @@ class App extends Component {
             onActivePanelChange={this.onActivePanelChange}
             />
 
-          <SlideInOut leftSlider in={activePanel !== 'settings'}>
+
+          <SlideInOut leftSlider in={showRoute1}>
             <RouteTile routes={routes} />
           </SlideInOut>
 
+          <SlideInOut leftSlider in={showRoute2}>
+            <RouteTile routes={routes} marginTop={{marginTop: 70}} />
+          </SlideInOut>
+
+          <SlideInOut leftSlider in={showRoute3}>
+            <RouteTile routes={routes} marginTop={{marginTop: 140}} />
+          </SlideInOut>
 
         </div>
       </div>
@@ -162,7 +176,7 @@ class App extends Component {
       OnlineRouting.batchRoute(user, destination)
         .then(routes => {
           this.fetchRecommendations(user, routes)
-          this.setState({errorMessage: null, routes, activePanel: 'user', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
+          this.setState({showRoute1: true, showRoute2: true, showRoute3: true, errorMessage: null, routes, activePanel: 'user', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
         })
         .catch((reason) => {
           const msg = `${reason.message}. Try moving the either the route start or end point`;

@@ -19,7 +19,7 @@ class RouteTile extends Component {
 
   render() {
     return (
-      <button className="RouteTile">
+      <button style={this.props.marginTop} className="RouteTile">
         <FaIcon className="RouteTile-icon" type="home"/>
 
         <div className="RouteTile-details">
