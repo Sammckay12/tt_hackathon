@@ -16,10 +16,12 @@ class SettingsPanel extends Component {
     super(props)
     this.state = {
       startDate: moment(),
+      startTime: moment(),
       user: {...this.props.user},
       selectedUserIndex: this.props.selectedUserIndex,
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
   }
 
   componentWillReceiveProps (nextProps) {
@@ -28,11 +30,18 @@ class SettingsPanel extends Component {
     }
   }
 
-  handleChange(date) {
+  handleDateChange(date) {
     this.setState({
       startDate: date
     });
     console.log('date', this.state.startDate);
+  }
+
+  handleTimeChange(time) {
+    this.setState({
+      startTime: time
+    });
+    console.log('time', this.state.startTime);
   }
 
   render () {
@@ -64,13 +73,19 @@ class SettingsPanel extends Component {
             <InputLabel>
               Time
             </InputLabel>
-            <Input
+            <DatePicker
+              showTimeSelect
+              showTimeSelectOnly
+              selected={this.state.startTime}
+              onChange={this.handleTimeChange}
+            />
+            {/*  <Input
                type="string"
                step="1"
                name="userWeight"
 //               value={userWeight}
                onChange={this.onFieldChange}
-               />
+               /> */}
           </div>
           <div className="mb-20">
             <InputLabel>
@@ -79,7 +94,7 @@ class SettingsPanel extends Component {
             <DatePicker
               dateFormat="DD/MM/YYYY"
               selected={this.state.startDate}
-              onChange={this.handleChange}
+              onChange={this.handleDateChange}
             />
           {/*  <Input
                type="string"
