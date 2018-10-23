@@ -47,6 +47,7 @@ class SettingsPanel extends Component {
     const {
       destination,
       onLocationSelect,
+      onUserChange,
       onSearchClear
     } = this.props;
 
@@ -64,7 +65,7 @@ class SettingsPanel extends Component {
         <UserCarousel
            users={users}
            currentSlide={selectedUserIndex}
-           onChange={this.onUserChange}
+           onChange={onUserChange}
            />
         <form ref={node => this.form = node} action="" onSubmit={this.onSubmit}>
           {/* Hidden submit button to enable 'Go' button to submit form under iOS */}
@@ -140,9 +141,9 @@ class SettingsPanel extends Component {
     );
   }
 
-  onUserChange = (index) => {
-    this.setState({selectedUserIndex: index, user: users[index]});
-  }
+  // onUserChange = (index) => {
+  //   this.setState({selectedUserIndex: index, user: users[index]});
+  // }
 
   onSubmit = (e) => {
     e.preventDefault();

@@ -45,10 +45,10 @@ class Map extends Component {
     }
   }
 
-
   render () {
     const {
       center,
+      user,
       zoom,
       fitBounds,
       fitBoundsOptions
@@ -61,12 +61,12 @@ class Map extends Component {
     const routes = this.renderRoutes();
     const markers = this.renderMarkers();
     const popup = this.renderPopup();
-
+console.log("user.coordinates",user.coordinates);
     return (
       <MapboxGl
          style={mapStyle}
          containerStyle={{width: '100%', height: '100%'}}
-         center={center}
+         center={user.coordinates}
          zoom={zoom}
          fitBounds={fitBounds}
          fitBoundsOptions={fitBoundsOptions}
