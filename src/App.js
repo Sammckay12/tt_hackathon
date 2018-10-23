@@ -155,12 +155,10 @@ class App extends Component {
 
   route () {
     const { user, destination, activeRoute } = this.state;
-    console.log("destination", destination);
     let destination1 = {coordinates: 3}
     const destinations = []
 
     if (user && destination) {
-      console.log("user", user);
       OnlineRouting.batchRoute(user, destination)
         .then(routes => {
           this.fetchRecommendations(user, routes)
@@ -250,7 +248,6 @@ class App extends Component {
   }
 
   onDestinationChange = (destination) => {
-  console.log("destination", destination);
     this.setState({
       destination: Object.assign({}, this.state.destination, destination)
     }, () => this.route());
