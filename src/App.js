@@ -279,7 +279,7 @@ class App extends Component {
   onUserChange = (index) => {
     const selectedUserIndex = isNaN(index) ? this.state.selectedUserIndex : index;
     const user = users[selectedUserIndex];
-console.log("user",user);    
+
     this.setState({
       selectedUserIndex,
       user
