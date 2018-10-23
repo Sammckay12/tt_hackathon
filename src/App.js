@@ -67,6 +67,7 @@ class App extends Component {
       showRoute2,
       showRoute3
     } = this.state;
+    console.log("user", user);
 
     return (
       <div className="App">
@@ -118,6 +119,7 @@ class App extends Component {
                user={user}
                recommendations={recommendations}
                destination={destination}
+               destinations={this.state.destinations}
                routes={routes}
                chargingpark={chargingpark}
                activeRoute={activeRoute}
@@ -149,17 +151,16 @@ class App extends Component {
             onActivePanelChange={this.onActivePanelChange}
             />
 
-
           <SlideInOut leftSlider in={showRoute1}>
-            <RouteTile routes={routes} />
+            <RouteTile routes={routes} routeLabel={'home'} removeRoutes={this.removeRoutes} />
           </SlideInOut>
 
           <SlideInOut leftSlider in={showRoute2}>
-            <RouteTile routes={routes} marginTop={{marginTop: 70}} />
+            <RouteTile routes={routes} routeLabel={'work'} removeRoutes={this.removeRoutes} marginTop={{marginTop: 70}} />
           </SlideInOut>
 
           <SlideInOut leftSlider in={showRoute3}>
-            <RouteTile routes={routes} marginTop={{marginTop: 140}} />
+            <RouteTile routes={routes} routeLabel={'gym'} removeRoutes={this.removeRoutes} marginTop={{marginTop: 140}} />
           </SlideInOut>
 
         </div>
@@ -167,15 +168,54 @@ class App extends Component {
     );
   }
 
+  removeRoutes = (keepOnly) => {
+    console.log("this.state.routes[keepOnly]", this.state.routes["normal"]);
+  console.log("this.state.destinations", this.state.destinations);
+
+    if (keepOnly === 'work') {
+      this.setState({
+        routes: Object.assign({}, {work: this.state.routes[keepOnly]}),
+        showRoute1: false,
+        showRoute3: false,
+        destinations: [this.state.destinations[1]]
+      })
+    }
+    if (keepOnly === 'gym') {
+      this.setState({
+        routes: Object.assign({}, {gym: this.state.routes[keepOnly]}),
+        showRoute1: false,
+        showRoute2: false,
+        destinations: [this.state.destinations[2]]
+      })
+    }
+    if (keepOnly === 'home') {
+      this.setState({
+        routes: Object.assign({}, {normal: this.state.routes['normal']}),
+        showRoute2: false,
+        showRoute3: false,
+        destinations: [this.state.destinations[0]]
+      })
+    }
+    console.log("routes",this.state.routes[keepOnly]);
+    console.log("hiiii", keepOnly);
+  }
+
   route () {
     const { user, destination, activeRoute } = this.state;
-    let destination1 = {coordinates: 3}
-    const destinations = []
 
-    if (user && destination) {
-      OnlineRouting.batchRoute(user, destination)
+    console.log("destination", destination);
+    let destination1 = {coordinates: {lng:20.403418, lat: 44.840034}, type: 'work'}
+    let destination2 = {coordinates: {lng:20.400883, lat: 44.827453}, type: 'gym'}
+    const destinations = [destination, destination1, destination2]
+    this.setState({destinations: destinations})
+
+    if (user && destinations) {
+      console.log("user", user);
+      OnlineRouting.batchRoute(user, destinations)
         .then(routes => {
-          this.fetchRecommendations(user, routes)
+
+          // this.fetchRecommendations(user, routes)
+          console.log("ROUTES", routes);
           this.setState({showRoute1: true, showRoute2: true, showRoute3: true, errorMessage: null, routes, activePanel: 'user', mapProps: Object.assign({}, this.state.mapProps, {fitBounds: routes[activeRoute].bounds})});
         })
         .catch((reason) => {

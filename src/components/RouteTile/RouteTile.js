@@ -16,14 +16,19 @@ class RouteTile extends Component {
     return moment(this.props.routes.normal.summary.arrivalTime).format('hh:mmA');
   }
 
-
   render() {
+    const { routeLabel } = this.props;
+
     return (
-      <button style={this.props.marginTop} className="RouteTile">
+      <button
+        onClick={() => {this.props.removeRoutes(routeLabel)}}
+        style={this.props.marginTop}
+        className="RouteTile">
+
         <FaIcon className="RouteTile-icon" type="home"/>
 
         <div className="RouteTile-details">
-          <label className="RouteTile-title">{Object.keys(this.props.routes)[0]}</label>
+          <label className="RouteTile-title">{routeLabel}</label>
           <div className="RouteTile-info">
             <label className="RouteTile-text">{this.calculateEta()}</label>
             <label className="RouteTile-text">{this.calculateDelay()}min delay</label>
