@@ -152,8 +152,6 @@ class App extends Component {
     const destinations = []
 
     if (user && destination) {
-      user.coordinates = {lat: 51.509626, lng: -0.124779}
-
       console.log("user", user);
       OnlineRouting.batchRoute(user, destination)
         .then(routes => {
