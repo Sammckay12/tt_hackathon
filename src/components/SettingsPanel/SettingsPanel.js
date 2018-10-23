@@ -74,6 +74,9 @@ class SettingsPanel extends Component {
               Time
             </InputLabel>
             <DatePicker
+              timeIntervals={15}
+              dateFormat="LT"
+              timeCaption="Time"
               showTimeSelect
               showTimeSelectOnly
               selected={this.state.startTime}
@@ -141,12 +144,13 @@ class SettingsPanel extends Component {
   }
 
   onApply = () => {
-    const { user, selectedUserIndex } = this.state;
-
-    user.coordinates = this.props.user.coordinates;
-
-    this.props.onUserChange(user, selectedUserIndex);
-    this.props.onBack();
+    console.log('date', this.state.startDate._d);
+    // const { user, selectedUserIndex } = this.state;
+    //
+    // user.coordinates = this.props.user.coordinates;
+    //
+    // this.props.onUserChange(user, selectedUserIndex);
+    // this.props.onBack();
   }
 
   onDefaultSettings = () => {
