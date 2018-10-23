@@ -143,8 +143,23 @@ class SettingsPanel extends Component {
     this.setState({user});
   }
 
+  createDateTimeString = () => {
+    let year = this.state.startDate._d.getFullYear();
+    let month = parseInt(this.state.startDate._d.getMonth()) + 1;
+    let day = this.state.startDate._d.getDate();
+    let hours = this.state.startTime._d.getHours();
+    let minutes = this.state.startTime._d.getMinutes();
+
+    return year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + '00';
+  }
+
   onApply = () => {
-    console.log('date', this.state.startDate._d);
+    let dateTimeString = this.createDateTimeString();
+    let unixTimeStamp = new Date(dateTimeString).getTime()/1000;
+
+    console.log('dateTimeString', dateTimeString);
+    console.log('unixTimeStamp', unixTimeStamp);
+
     // const { user, selectedUserIndex } = this.state;
     //
     // user.coordinates = this.props.user.coordinates;
