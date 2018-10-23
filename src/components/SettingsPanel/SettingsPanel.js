@@ -34,14 +34,12 @@ class SettingsPanel extends Component {
     this.setState({
       startDate: date
     });
-    console.log('date', this.state.startDate);
   }
 
   handleTimeChange(time) {
     this.setState({
       startTime: time
     });
-    console.log('time', this.state.startTime);
   }
 
   render () {
@@ -161,34 +159,18 @@ class SettingsPanel extends Component {
 
   createDateTimeString = () => {
     const { startDate, startTime } = this.state;
+    let date = startDate.format('YYYY-MM-DD')
+    let time = startTime.format('hh:mm:ss')
 
-    let year = startDate._d.getFullYear();
-    let month = parseInt(startDate._d.getMonth()) + 1;
-    let day = startDate._d.getDate();
-    let hours = startTime._d.getHours();
-    let minutes = startTime._d.getMinutes();
-
-    return year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + '00';
-  }
-
-  createTimeFloat = () => {
-    const { startTime } = this.state
-
-    return parseFloat(startTime._d.getHours() + parseFloat((startTime._d.getMinutes() / 60).toFixed(1)))
+    return date + 'T' + time
   }
 
   onApply = () => {
-    const { user, selectedUserIndex, startDate } = this.state;
+    const { user, selectedUserIndex } = this.state;
     // console.log('user', user);
-    // let dateTimeString = this.createDateTimeString();
-    // let unixTimeStamp = new Date(dateTimeString).getTime()/1000;
-
-    let timeFloat = this.createTimeFloat();
-    let dayNumber = startDate._d.getDay();
-    console.log('timeFloat', timeFloat);
-    console.log('dayNumber (Sunday is 0) - ', dayNumber);
-
-
+    let dayTimeString = this.createDateTimeString();
+    console.log('dayTimeString', dayTimeString);
+    return dayTimeString
     // user.coordinates = this.props.user.coordinates;
     //
     // this.props.onUserChange(user, selectedUserIndex);
