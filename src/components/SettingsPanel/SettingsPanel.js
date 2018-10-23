@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { InputLabel, Input } from 'legoland-ui';
+import Search from '../Search/Search';
 import UserCarousel from '../UserCarousel/UserCarousel';
 import users from '../../data/users';
+
 
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './SettingsPanel.css';
@@ -23,6 +25,11 @@ class SettingsPanel extends Component {
 
   render () {
     const { user, selectedUserIndex } = this.state;
+    const {
+      destination,
+      onDestinationSelect,
+      onSearchClear
+    } = this.props;
 
     return (
       <div className="SettingsPanel">
@@ -71,12 +78,12 @@ class SettingsPanel extends Component {
           </div>
         </form>
         <div className="SettingsPanel-button-bar flex-horizontal flex-flex-end">
-          <button
+          {/* <button
              className="button-ev button-ev-ghost"
              onClick={this.onDefaultSettings}
              >
             <span>Default Settings</span>
-          </button>
+          </button> */}
           <button
              className="button-ev button-ev-ghost"
              style={{marginLeft: 10}}
@@ -84,6 +91,17 @@ class SettingsPanel extends Component {
              >
             <span>Apply</span>
           </button>
+        ></div>
+        <div className="search-section">
+          <h1>Set location</h1>
+          <div>
+            <Search
+              value={destination ? destination.address.freeformAddress : ''}
+              searchFn={this.onSearch}
+              onSelect={onDestinationSelect}
+              onClear={onSearchClear}
+              />
+          </div>
         </div>
       </div>
     );
@@ -101,7 +119,7 @@ class SettingsPanel extends Component {
 
   onFieldChange = (e) => {
     const user = {...this.state.user};
-    let { target: { name, value }} = e;
+    let { target: { value }} = e;
     value = isNaN(value) ? value : parseFloat(value);
     this.setState({user});
   }
@@ -120,6 +138,13 @@ class SettingsPanel extends Component {
     this.setState({user});
   }
 
+  onSearch = (query) => {
+    return this.props.searchFn(query)
+      .catch(e => {
+        console.log(e.message);
+      });
+  }
+
   onBack = () => {
     this.setState(
       {user: this.props.user, selectedUserIndex: this.props.selectedUserIndex},
@@ -132,6 +157,10 @@ SettingsPanel.propTypes = {
   user: PropTypes.object.isRequired,
   selectedUserIndex: PropTypes.number,
   onBack: PropTypes.func.isRequired,
+  searchFn: PropTypes.func.isRequired,
+  onDestinationSelect: PropTypes.func,
+  onActiveRouteChange: PropTypes.func,
+  onSearchClear: PropTypes.func,
   onUserChange: PropTypes.func.isRequired
 };
 

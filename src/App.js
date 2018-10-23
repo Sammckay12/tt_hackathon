@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { Button, FaIcon } from 'legoland-ui';
-import { Dialog, Header, Logo, CountryButton, CountrySelector } from 'fm-demos-common';
+// import { Dialog, Header, Logo, CountryButton, CountrySelector } from 'fm-demos-common';
 import Help from './components/Help/Help';
 import Map from './components/Map/Map';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -60,7 +60,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Dialog
+        {/* <Dialog
            title="Select Country"
            onClose={this.onCountrySelectorClose}
            onMaskClick={this.onCountrySelectorClose}
@@ -76,7 +76,7 @@ class App extends Component {
           <Help/>
         </Dialog>
         <Header>
-          <Logo product="EV Assistant"/>
+          <Logo product="GO Predict"/>
           <div className="Header-spacer"/>
           <Button
              className="ResetButton"
@@ -102,7 +102,7 @@ class App extends Component {
              countryCode={selectedCountry}
              onClick={this.onCountrySelectorOpen}
              />
-        </Header>
+        </Header> */}
         <div className="App-content">
           <Map {...mapProps}
                user={user}

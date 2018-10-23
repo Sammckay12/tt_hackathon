@@ -7,7 +7,7 @@ import Icon from '../Icon/Icon';
 import PinIcon from '../PinIcon/PinIcon';
 import MapPopup from '../MapPopup/MapPopup';
 import Route from '../Route/Route';
-import { ZoomControl, AttributionControl, CompassControl, util } from 'fm-demos-common';
+import { ZoomControl, AttributionControl, CompassControl } from 'fm-demos-common';
 import mapStyle from './mono.json';
 
 const ROUTE_ACTIVE_STYLE = {
@@ -81,8 +81,7 @@ class Map extends Component {
   }
 
   renderRoutes () {
-    const { routes, activeRoute } = this.props;
-    const before = util.findFirstSymbolLayerId(this.map);
+    const { routes } = this.props;
     const layers = [];
 
     if (routes) {
@@ -91,7 +90,6 @@ class Map extends Component {
            id="route-normal"
            key="route-normal"
            coordinates={routes.normal.coordinates}
-//           before={activeRoute === 'eco' ? 'route-eco-stroke' : before}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'normal'}}
            onClick={this.onRouteClick}
@@ -104,7 +102,7 @@ class Map extends Component {
   }
 
   getRouteStyle (routeType) {
-    const { user, routes, activeRoute } = this.props;
+    const { routes } = this.props;
     const route = routes[routeType];
   }
 

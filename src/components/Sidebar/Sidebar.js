@@ -12,6 +12,7 @@ class Sidebar extends Component {
       activePanel,
       user,
       selectedUserIndex,
+      searchFn,
       onUserChange
     } = this.props;
 
@@ -21,6 +22,7 @@ class Sidebar extends Component {
           <SettingsPanel
              user={user}
              selectedUserIndex={selectedUserIndex}
+             searchFn={searchFn}
              onBack={this.onBack}
              onUserChange={onUserChange}
              />
