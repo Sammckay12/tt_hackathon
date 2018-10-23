@@ -147,12 +147,14 @@ class App extends Component {
 
   route () {
     const { user, destination, activeRoute } = this.state;
+    console.log("destination", destination);
+    let destination1 = {coordinates: 3}
+    const destinations = []
 
     if (user && destination) {
       user.coordinates = {lat: 51.509626, lng: -0.124779}
-      destination.coordinates = {lat: 51.523742, lng: -0.123080 }
+
       console.log("user", user);
-      console.log("destination", destination);
       OnlineRouting.batchRoute(user, destination)
         .then(routes => {
           this.fetchRecommendations(user, routes)

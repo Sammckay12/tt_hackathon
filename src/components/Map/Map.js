@@ -39,7 +39,7 @@ class Map extends Component {
   }
 
   componentWillReceiveProps = (nextProps) => {
-    if (this.props.recommendations != nextProps.recommendations) {
+    if (this.props.recommendations !== nextProps.recommendations) {
       this.renderMarkers()
     }
   }
@@ -157,7 +157,6 @@ class Map extends Component {
         )
 
       })
-      console.log("recommendations", recommendations);
     }
     return markers;
   }
