@@ -155,8 +155,11 @@ class Map extends Component {
            anchor="center"
            onDragEnd={this.setUserPosition}
            draggable
+           size="2.8rem"
+           src={user.image}
+           shadow
            >
-          <Icon size="2.8rem" src={user.image} shadow/>
+          {/* <Icon size="2.8rem" src={user.image} shadow/> */}
         </DraggableMarker>
       );
     }
