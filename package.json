@@ -19,6 +19,7 @@
     "moment-duration-format": "^2.2.2",
     "pure-react-carousel": "^1.13.2",
     "react": "^16.4.1",
+    "react-date-picker": "^7.0.0",
     "react-datepicker": "^1.6.0",
     "react-dom": "^16.4.1",
     "react-mapbox-gl": "^3.8.0",

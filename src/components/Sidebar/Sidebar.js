@@ -12,19 +12,21 @@ class Sidebar extends Component {
       activePanel,
       user,
       selectedUserIndex,
+      searchFn,
+      onLocationSelect,
       onUserChange
     } = this.props;
 
     return (
       <div className="Sidebar">
-        <SlideInOut in={activePanel === 'settings'}>
-          <SettingsPanel
-             user={user}
-             selectedUserIndex={selectedUserIndex}
-             onBack={this.onBack}
-             onUserChange={onUserChange}
-             />
-        </SlideInOut>
+        <SettingsPanel
+           user={user}
+           selectedUserIndex={selectedUserIndex}
+           searchFn={searchFn}
+           onLocationSelect={onLocationSelect}
+           onBack={this.onBack}
+           onUserChange={onUserChange}
+           />
       </div>
     );
   }
@@ -49,7 +51,7 @@ Sidebar.propTypes = {
   activeRoute: PropTypes.string,
   errorMessage: PropTypes.string,
   searchFn: PropTypes.func.isRequired,
-  onDestinationSelect: PropTypes.func,
+  onLocationSelect: PropTypes.func,
   onActiveRouteChange: PropTypes.func,
   onSearchClear: PropTypes.func,
   onUserChange: PropTypes.func,
