@@ -144,7 +144,7 @@ class App extends Component {
             />
 
           <SlideInOut leftSlider in={activePanel !== 'settings'}>
-            <RouteTile routeLabel='Home' routeEta='6:30pm' routeDelay='5' />
+            <RouteTile routes={routes} />
           </SlideInOut>
 
 
