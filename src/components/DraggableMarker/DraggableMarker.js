@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import * as MapboxGl from 'mapbox-gl';
 
@@ -15,11 +16,25 @@ export default class DraggableMarker extends React.Component {
       coordinates,
       anchor,
       offset,
-      draggable
+      draggable,
+      size, 
+      src,
+      shadow
     } = this.props;
 
+    const classes = classnames(
+      'Icon',
+      !shadow || 'shadow'
+    );
+    const style = {
+      width: size,
+      height: size,
+      backgroundImage: `url(${src})`
+    };
+    
     const wrapper = document.createElement('div');
-    ReactDOM.render(this.props.children, wrapper);
+    wrapper.setAttribute("id", "icon-wrapper");
+    ReactDOM.render(<div className={classes} style={style}></div>, wrapper);
 
     this.marker = new MapboxGl.Marker({
       element: wrapper,
@@ -43,8 +58,24 @@ export default class DraggableMarker extends React.Component {
     const {
       coordinates,
       offset,
-      draggable
+      draggable,
+      size, 
+      src,
+      shadow
     } = this.props;
+
+    const classes = classnames(
+      'Icon',
+      !shadow || 'shadow'
+    );
+    const style = {
+      width: size,
+      height: size,
+      backgroundImage: `url(${src})`
+    };
+
+    const wrapper = document.getElementById('icon-wrapper');
+    ReactDOM.render(<div className={classes} style={style}></div>, wrapper);
 
     this.marker.setLngLat(coordinates);
     this.marker.setOffset(offset);

@@ -145,17 +145,21 @@ class Map extends Component {
     const markers = [];
 
     if (user) {
-        markers.push(
-          <DraggableMarker
-             coordinates={user.coordinates}
-             key={`${user.model + '-' + user.coordinates.toString()}-user-marker`}
-             anchor="center"
-             onDragEnd={this.setUserPosition}
-             draggable
-             >
-            <Icon size="2.8rem" src={"/static/media/emma.bc3f2370.png"} shadow/>
-          </DraggableMarker>
-        );
+      markers.push(
+        <DraggableMarker
+           coordinates={user.coordinates}
+           key={`${user.model + '-' + user.coordinates.toString()}-user-marker`}
+           anchor="center"
+           onDragEnd={this.setUserPosition}
+           draggable
+           size="2.8rem"
+           src={user.image}
+           shadow
+           >
+          {/* <Icon size="2.8rem" src={user.image} shadow/> */}
+        </DraggableMarker>
+      );
+    }
     if (destinations) {
       destinations.forEach((destination) => {
         markers.push(
