@@ -182,7 +182,7 @@ class App extends Component {
 
           <SlideInOut leftSlider in={showRoute1}>
           {  routes['normal'] ? (
-              <RouteTile routes={routes} routeLabel={'home'} strokeColor='#3d99dd'removeRoutes={this.removeRoutes} marginTop={{marginTop: 70}} />
+              <RouteTile routes={routes} routeLabel={'school'} strokeColor='#3d99dd'removeRoutes={this.removeRoutes} marginTop={{marginTop: 70}} />
             ) : (null)}
           </SlideInOut>
 
@@ -238,7 +238,7 @@ class App extends Component {
         destinations: [this.state.destinations[2]]
       })
     }
-    if (keepOnly === 'home') {
+    if (keepOnly === 'school') {
       this.setState({
         routes: Object.assign({}, {normal: this.state.routes['normal']}),
         showRoute2: false,
