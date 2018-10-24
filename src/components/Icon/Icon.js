@@ -5,19 +5,11 @@ import classnames from 'classnames';
 import './Icon.css';
 
 class Icon extends Component {
-  // componentDidUpdate () {
-  //   const {
-  //     src
-  //   } = this.props;
-
-  //   this.marker.setLngLat(coordinates);
-  //   this.marker.setOffset(offset);
-  //   this.marker.setDraggable(draggable);
-  // }
 
   render() {
+  console.log("this.props.src", this.props.src);
     const {
-      size, 
+      size,
       src,
       shadow
     } = this.props;

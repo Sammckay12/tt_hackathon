@@ -190,16 +190,24 @@ class App extends Component {
     );
   }
 
-  fetchPredictedDestinations = () => {
-    console.log("in predict", predictedData);
-    predictedData.forEach((loc) => {
-      loc['coordinates'] = {lng: loc.lon, lat: loc.lat}
+  fetchPredictedDestinations = (timeParameters) => {
+
+    fetch(`http://localhost:8010/proxy/predict_destination/user42/lat44.8211475/lon20.3983179/time${timeParameters}`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(response => response.json())
+      .then((responseJson) => {
+        responseJson.forEach((loc) => {
+          loc['coordinates'] = {lng: loc.lon, lat: loc.lat}
+        })
+        this.setState({destinations: responseJson}, () => {this.route()} )
+      console.log("responseJson", responseJson);
     })
-
-    console.log("predictedData", predictedData);
-    this.setState({destinations: predictedData}, () => {this.route()} )
-
   }
+
 
   removeRoutes = (keepOnly) => {
 
@@ -233,7 +241,7 @@ class App extends Component {
 
   route () {
     const { user, destinations, activeRoute } = this.state;
-    // 
+    //
     // let destination1 = {coordinates: {lng:20.403418, lat: 44.840034}, type: 'work'}
     // let destination2 = {coordinates: {lng:20.400883, lat: 44.827453}, type: 'gym'}
     // const destinations = [destination, destination1, destination2]

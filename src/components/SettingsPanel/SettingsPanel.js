@@ -166,24 +166,13 @@ class SettingsPanel extends Component {
     return date + 'T' + time
   }
 
-  fetchPredictedRoutes = (timeParameters) => {
-    fetch(`http://localhost:8010/proxy/predict_destination/user42/lat44.8211475/lon20.3983179/time${timeParameters}`, {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-      .then(response => response.json())
-      .then((responseJson) => {
-        console.log("responseJson", responseJson);;
-    })
-  }
+
 
   onApply = () => {
     const { user, selectedUserIndex } = this.state;
     // console.log('user', user);
     let dayTimeString = this.createDateTimeString();
-    this.fetchPredictedRoutes(dayTimeString);
+    this.props.predictRoutes(dayTimeString)
     // user.coordinates = this.props.user.coordinates;
     //
     // this.props.onUserChange(user, selectedUserIndex);
