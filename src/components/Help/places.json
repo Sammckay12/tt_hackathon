@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Dva Jelena",
+    "city": "Belgrade",
+    "description": "Known for preserving tradition and serving up meat platters designed to have you leaving stuffed to the brim!",
+    "category": "Food",
+    "subcategories": "Meats,Casual Dining",
+    "price": 3,
+    "rating": 4.5,
+    "Address": "Skadarska 32, Beograd, Serbia",
+    "geo": [
+      20.414248,
+      44.816192
+    ],
+    "website": "http://www.dvajelena.rs/en/",
+    "imagesLink": "https://s3.eu-central-1.amazonaws.com/kompasapp/tomtomhack/Dva+Jelena.jpg"
+  },
+  {
+    "name": "Reka",
+    "city": "Belgrade",
+    "description": "Tuck into the fresh catch of the day whilst overlooking the city lights.",
+    "category": "Food",
+    "subcategories": "Seafood",
+    "price": 3,
+    "rating": 4.5,
+    "Address": "Kej Oslobođenja 73, Beograd 11080, Serbia",
+    "geo": [
+      20.422181,
+      44.807873
+    ],
+    "website": "http://reka.co.rs/en/home/",
+    "imagesLink": "https://s3.eu-central-1.amazonaws.com/kompasapp/tomtomhack/Reka.jpg"
+  },
+  {
+    "name": "Pekara Trpković",
+    "city": "Belgrade",
+    "description": "High quality and authentic pastries, perfect for grabbing on route to work!",
+    "category": "Food",
+    "subcategories": "Sweet Treats,Quick Bites",
+    "price": 2,
+    "rating": 4.7,
+    "Address": "Nemanjina 32, Beograd, Serbia",
+    "geo": [
+      20.412291,
+      44.810294
+    ],
+    "website": "https://www.facebook.com/pekaratrpkovic/",
+    "imagesLink": "https://s3.eu-central-1.amazonaws.com/kompasapp/tomtomhack/Pekara+Trpkovic%CC%81.jpg"
+  }
+]
