@@ -192,7 +192,6 @@ class Map extends Component {
     }
     return markers;
   }
-}
 
   clickedMarker = (place) => {
   console.log("clickedMarker", place);
