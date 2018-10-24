@@ -21,6 +21,7 @@ class Sidebar extends Component {
       <div className="Sidebar">
         <SettingsPanel
            user={user}
+           predictRoutes={this.props.predictRoutes}
            selectedUserIndex={selectedUserIndex}
            searchFn={searchFn}
            onLocationSelect={onLocationSelect}

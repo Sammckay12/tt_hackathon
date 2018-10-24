@@ -38,13 +38,6 @@ class Map extends Component {
     };
   }
 
-  componentWillReceiveProps = (nextProps) => {
-  console.log("nextProps destinations", nextProps.destinations);
-    if (this.props.recommendations !== nextProps.recommendations) {
-      this.renderMarkers()
-    }
-  }
-
   render () {
     const {
       center,
@@ -61,7 +54,6 @@ class Map extends Component {
     const routes = this.renderRoutes();
     const markers = this.renderMarkers();
     const popup = this.renderPopup();
-
     return (
       <MapboxGl
          style={mapStyle}
@@ -91,7 +83,6 @@ class Map extends Component {
   renderRoutes () {
     const { routes } = this.props;
     const layers = [];
-    console.log("new routes", routes);
 
     if (routes) {
       if (routes['work']) {
@@ -99,6 +90,8 @@ class Map extends Component {
         <Route
            id="route-work"
            key="route-work"
+           strokeColor='yellow'
+           color='yellow'
            coordinates={routes.work.coordinates}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'eco'}}
@@ -111,6 +104,8 @@ class Map extends Component {
         <Route
            id="route-normal"
            key="route-normal"
+           strokeColor='green'
+           color='green'
            coordinates={routes.normal.coordinates}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'normal'}}
@@ -123,6 +118,8 @@ class Map extends Component {
         <Route
            id="route-gym"
            key="route-gym"
+           strokeColor='red'
+           color='red'
            coordinates={routes.gym.coordinates}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'normal'}}
@@ -138,13 +135,13 @@ class Map extends Component {
 
   getRouteStyle (routeType) {
     const { routes } = this.props;
-    const route = routes[routeType];
+    console.log("routes", routes);
+    console.log("routeType", routeType);
+    const route = routes[routeType]
   }
 
   renderMarkers () {
     const { user, destination, recommendations, destinations } = this.props;
-    console.log("destination", this.props.destination);
-    console.log("destinations", this.props.destinations);
     const markers = [];
 
     if (user) {
