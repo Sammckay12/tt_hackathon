@@ -212,8 +212,10 @@ class App extends Component {
   removeRoutes = (keepOnly) => {
 
     if (keepOnly === 'work') {
+      let work = this.state.routes['work'];
+      console.log("work", work);
+
       this.setState({
-        routes: Object.assign({}, {work: this.state.routes[keepOnly]}),
         showRoute1: false,
         showRoute3: false,
         destinations: [this.state.destinations[1]]

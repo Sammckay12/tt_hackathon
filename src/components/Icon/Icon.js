@@ -6,7 +6,6 @@ import './Icon.css';
 
 class Icon extends Component {
   render() {
-  console.log("this.props.src", this.props.src);
     const {
       size,
       src,
