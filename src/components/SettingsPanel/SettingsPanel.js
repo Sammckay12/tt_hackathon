@@ -78,11 +78,11 @@ class SettingsPanel extends Component {
               Time
             </InputLabel>
             <DatePicker
-              timeIntervals={15}
-              dateFormat="LT"
-              timeCaption="Time"
               showTimeSelect
               showTimeSelectOnly
+              timeIntervals={30}
+              dateFormat="LT"
+              timeCaption="Time"
               selected={this.state.startTime}
               onChange={this.handleTimeChange}
             />
