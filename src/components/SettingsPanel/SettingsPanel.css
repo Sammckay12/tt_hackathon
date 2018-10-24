@@ -1,10 +1,33 @@
+.react-datepicker react-datepicker--time-only {
+  min-width: 125px !important;
+}
+
+.DatePicker div.react-datepicker {
+  min-width: 125px !important;
+  padding: .1em !important;
+}
+
+.DatePicker div.react-datepicker__day--keyboard-selected, .DatePicker div.react-datepicker__day--selected {
+  background-color: red !important;
+}
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+  padding-right: 0px;
+}
+.react-datepicker--time-only .react-datepicker__time-container {
+  width: 125px !important;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
+  width: 125px !important;
+}
+
+.Sidebar ::-webkit-scrollbar-track-piece {
+  background-color: #fff !important;
+}
+
 .Input__icon {
   color: #fff;
   margin-top: .4rem !important;
-}
-
-.DatePicker div.react-datepicker__day--selected {
-  background-color: red !important;
 }
 
 .SettingsPanel {
