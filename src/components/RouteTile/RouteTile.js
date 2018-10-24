@@ -9,16 +9,23 @@ class RouteTile extends Component {
 
   // routeLabel='Home' routeEta='6:30pm' routeDelay='5'
   calculateDelay = (routeLabel) => {
-    return this.props.routes.normal.summary.trafficDelayInSeconds / 60;
+    if (routeLabel === 'school') {
+      return this.props.routes['normal'].summary.trafficDelayInSeconds / 60;
+    } else {
+      return this.props.routes[routeLabel].summary.trafficDelayInSeconds / 60;
+    }
   }
 
   calculateEta = (routeLabel) => {
-    return moment(this.props.routes.normal.summary.arrivalTime).format('hh:mmA');
+    if (routeLabel === 'school') {
+      return moment(this.props.routes['normal'].summary.arrivalTime).format('hh:mmA');
+    } else {
+      return moment(this.props.routes[routeLabel].summary.arrivalTime).format('hh:mmA');
+    }
   }
 
   render() {
     const { routeLabel } = this.props;
-    console.log("routes", this.props.routes);
 
     return (
       <button
@@ -33,7 +40,7 @@ class RouteTile extends Component {
           <div className="RouteTile-info">
             <label className="RouteTile-text">{this.calculateEta(routeLabel)}</label>
             <label className="RouteTile-text">{this.calculateDelay(routeLabel)}min delay</label>
-            <div style={{height: '5px', width: '15%', backgroundColor: 'red'}}></div>
+            <div style={{height: '5px', width: '15%', backgroundColor: this.props.strokeColor}}></div>
           </div>
         </div>
       </button>

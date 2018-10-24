@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl';
 import DraggableMarker from '../DraggableMarker/DraggableMarker';
+import DraggableMarker2 from '../DraggableMarker/DraggableMarker2';
 import GeolocateControl from '../GeolocateControl/GeolocateControl';
 import Icon from '../Icon/Icon';
 import PinIcon from '../PinIcon/PinIcon';
@@ -86,16 +87,16 @@ class Map extends Component {
     const layers = [];
 
     if (routes) {
-      if (routes['work']) {
+      if (routes['gym']) {
       layers.push(
         <Route
-           id="route-work"
-           key="route-work"
-           strokeColor='yellow'
-           color='yellow'
-           coordinates={routes.work.coordinates}
+           id="route-gym"
+           key="route-gym"
+           strokeColor='#a2bed4'
+           color='#bcdcf4'
+           coordinates={routes.gym.coordinates}
            {...(this.getRouteStyle('normal'))}
-           properties={{route: 'eco'}}
+           properties={{route: 'normal'}}
            onClick={this.onRouteClick}
            />
         );
@@ -105,8 +106,8 @@ class Map extends Component {
         <Route
            id="route-normal"
            key="route-normal"
-           strokeColor='green'
-           color='green'
+           strokeColor='#3381bb'
+           color='#3d99dd'
            coordinates={routes.normal.coordinates}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'normal'}}
@@ -114,16 +115,16 @@ class Map extends Component {
            />
         );
       }
-      if (routes['gym']) {
+      if (routes['work']) {
       layers.push(
         <Route
-           id="route-gym"
-           key="route-gym"
-           strokeColor='red'
-           color='red'
-           coordinates={routes.gym.coordinates}
+           id="route-work"
+           key="route-work"
+           strokeColor='#155481'
+           color='#1c689f'
+           coordinates={routes.work.coordinates}
            {...(this.getRouteStyle('normal'))}
-           properties={{route: 'normal'}}
+           properties={{route: 'eco'}}
            onClick={this.onRouteClick}
            />
         );
@@ -162,9 +163,10 @@ class Map extends Component {
       );
     }
     if (destinations) {
+      console.log("destinations", destinations);
       destinations.forEach((destination) => {
         markers.push(
-          <DraggableMarker
+          <DraggableMarker2
             coordinates={destination.coordinates}
             key={`${destination.coordinates.toString()}-destination-marker`}
             anchor="bottom"
@@ -172,7 +174,7 @@ class Map extends Component {
             draggable
             >
             <PinIcon size="2rem" type="flag-checkered" shadow/>
-          </DraggableMarker>
+          </DraggableMarker2>
         );
       })
     }
