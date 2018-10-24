@@ -199,11 +199,9 @@ class Map extends Component {
   }
 
   renderPopup () {
-    const { popupCoordinates } = this.state;
-  
-    const coordinates = {popupCoordinates};
-//    console.log("renderPopup",this.props.onSetUserPosition(coordinates));
-  //  this.props.onSetUserPosition(coordinates);
+    return null;
+    // const { popupCoordinates } = this.state;
+
     // if (popupCoordinates) {
     //   return (
     //     <React.Fragment>
@@ -262,6 +260,7 @@ class Map extends Component {
   }
 
   onMapClick = (map, event) => {
+    this.props.onSetUserPosition(event.lngLat);
     if (this.state.popupCoordinates) {
       this.setState({popupCoordinates: null});
       return;
