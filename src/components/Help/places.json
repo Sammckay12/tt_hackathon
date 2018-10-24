@@ -3,7 +3,7 @@
     "name": "Dva Jelena",
     "city": "Belgrade",
     "description": "Known for preserving tradition and serving up meat platters designed to have you leaving stuffed to the brim!",
-    "category": "Food",
+    "category": "Breakfast     ",
     "subcategories": "Meats,Casual Dining",
     "price": 3,
     "rating": 4.5,
@@ -19,7 +19,7 @@
     "name": "Reka",
     "city": "Belgrade",
     "description": "Tuck into the fresh catch of the day whilst overlooking the city lights.",
-    "category": "Food",
+    "category": "Coffee Shop",
     "subcategories": "Seafood",
     "price": 3,
     "rating": 4.5,
@@ -35,14 +35,14 @@
     "name": "Pekara Trpković",
     "city": "Belgrade",
     "description": "High quality and authentic pastries, perfect for grabbing on route to work!",
-    "category": "Food",
+    "category": "Coffee Shop",
     "subcategories": "Sweet Treats,Quick Bites",
     "price": 2,
     "rating": 4.7,
     "Address": "Nemanjina 32, Beograd, Serbia",
     "geo": [
-      20.412291,
-      44.810294
+      20.436054,
+      44.793980
     ],
     "website": "https://www.facebook.com/pekaratrpkovic/",
     "imagesLink": "https://s3.eu-central-1.amazonaws.com/kompasapp/tomtomhack/Pekara+Trpkovic%CC%81.jpg"

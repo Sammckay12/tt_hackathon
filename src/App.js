@@ -182,16 +182,23 @@ class App extends Component {
             null
           )}
 
+
           <SlideInOut leftSlider in={showPlaces}>
-            <PlaceTile marginTop={{marginTop: 110}} />
+          {  this.state.recommendations.length !== 0 ? (
+              <PlaceTile delay='2' place={this.state.recommendations[0]} marginTop={{marginTop: 110}} />
+            ) : (null)}
           </SlideInOut>
 
           <SlideInOut leftSlider in={showPlaces}>
-            <PlaceTile marginTop={{marginTop: 180}} />
+            { this.state.recommendations.length !== 0 ? (
+            <PlaceTile delay='5' place={this.state.recommendations[1]} marginTop={{marginTop: 180}} />
+            ) : (null)}
           </SlideInOut>
 
           <SlideInOut leftSlider in={showPlaces}>
-            <PlaceTile marginTop={{marginTop: 250}} />
+          {  this.state.recommendations.length !== 0 ? (
+              <PlaceTile delay='2' place={this.state.recommendations[2]} marginTop={{marginTop: 250}} />
+            ) : (null)}
           </SlideInOut>
 
         </div>

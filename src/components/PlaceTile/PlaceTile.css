@@ -3,7 +3,7 @@
   flex-direction: row;
   height: 60px;
   width: 250px;
-  background: rgba(31, 170, 116, 0.85);
+  background: rgba(31, 170, 116, 0.95);
   border-radius: 4px;
   position: fixed;
   top: 85px;
@@ -25,6 +25,7 @@
   margin-bottom: 5px;
   font-size: 16px;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .PlaceTile-details {
@@ -35,6 +36,7 @@
   color: #fff;
   font-size: 13px;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .PlaceTile-info {
