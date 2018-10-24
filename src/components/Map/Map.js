@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl';
 import DraggableMarker from '../DraggableMarker/DraggableMarker';
+import DraggableMarker2 from '../DraggableMarker/DraggableMarker2';
 import GeolocateControl from '../GeolocateControl/GeolocateControl';
 import Icon from '../Icon/Icon';
 import PinIcon from '../PinIcon/PinIcon';
@@ -163,7 +164,7 @@ class Map extends Component {
     if (destinations) {
       destinations.forEach((destination) => {
         markers.push(
-          <DraggableMarker
+          <DraggableMarker2
             coordinates={destination.coordinates}
             key={`${destination.coordinates.toString()}-destination-marker`}
             anchor="bottom"
@@ -171,7 +172,7 @@ class Map extends Component {
             draggable
             >
             <PinIcon size="2rem" type="flag-checkered" shadow/>
-          </DraggableMarker>
+          </DraggableMarker2>
         );
       })
     }
