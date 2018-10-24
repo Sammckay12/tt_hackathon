@@ -173,18 +173,17 @@ class App extends Component {
             onActivePanelChange={this.onActivePanelChange}
             />
 
-          <SlideInOut leftSlider in={showRoute1}>
-
-          {  routes['normal'] ? (
-              <RouteTile routes={routes} routeLabel={'home'} removeRoutes={this.removeRoutes} />
-            ) : (null)}
-          </SlideInOut>
-
           <SlideInOut leftSlider in={showRoute2}>
             { routes['work'] ? (
-              <RouteTile routes={routes} routeLabel={'work'} removeRoutes={this.removeRoutes} marginTop={{marginTop: 70}} />
+              <RouteTile routes={routes} routeLabel={'work'} removeRoutes={this.removeRoutes} />
             ) : (null)
             }
+          </SlideInOut>
+
+          <SlideInOut leftSlider in={showRoute1}>
+          {  routes['normal'] ? (
+              <RouteTile routes={routes} routeLabel={'home'} removeRoutes={this.removeRoutes} marginTop={{marginTop: 70}} />
+            ) : (null)}
           </SlideInOut>
 
           <SlideInOut leftSlider in={showRoute3}>
