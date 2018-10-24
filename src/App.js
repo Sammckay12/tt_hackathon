@@ -69,7 +69,6 @@ class App extends Component {
       showRoute2,
       showRoute3
     } = this.state;
-    console.log("user", user);
 
     return (
       <div className="App">
@@ -130,6 +129,7 @@ class App extends Component {
                onMoveEnd={this.onMapMoveEnd}
                onGeolocate={this.geolocate}
                onUserChange={this.onUserChange}
+               onSetUserPosition={this.onSetUserPosition}
                onDestinationChange={this.onDestinationChange}
                onDestinationReverseGeocode={this.onDestinationReverseGeocode}
                onActiveRouteChange={this.onActiveRouteChange}
@@ -234,8 +234,6 @@ class App extends Component {
     // let destination1 = {coordinates: {lng:20.403418, lat: 44.840034}, type: 'work'}
     // let destination2 = {coordinates: {lng:20.400883, lat: 44.827453}, type: 'gym'}
     // const destinations = [destination, destination1, destination2]
-  console.log("destinations", destinations);
-    console.log("activeRoute", activeRoute);
     this.setState({destinations: destinations})
 
     if (user && destinations) {
@@ -311,6 +309,14 @@ class App extends Component {
       selectedUserIndex,
       user
     });
+  }
+
+  onSetUserPosition = (coordinates) => {
+    if (coordinates) {
+      this.setState({
+        user: Object.assign({}, this.state.user, {coordinates}) 
+      });
+    }
   }
 
   onActivePanelChange = (activePanel) => {
