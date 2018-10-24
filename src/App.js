@@ -175,20 +175,20 @@ class App extends Component {
 
           <SlideInOut leftSlider in={showRoute2}>
             { routes['work'] ? (
-              <RouteTile routes={routes} routeLabel={'work'} removeRoutes={this.removeRoutes} />
+              <RouteTile routes={routes} routeLabel={'work'} strokeColor='#1c689f'removeRoutes={this.removeRoutes} />
             ) : (null)
             }
           </SlideInOut>
 
           <SlideInOut leftSlider in={showRoute1}>
           {  routes['normal'] ? (
-              <RouteTile routes={routes} routeLabel={'home'} removeRoutes={this.removeRoutes} marginTop={{marginTop: 70}} />
+              <RouteTile routes={routes} routeLabel={'home'} strokeColor='#3d99dd'removeRoutes={this.removeRoutes} marginTop={{marginTop: 70}} />
             ) : (null)}
           </SlideInOut>
 
           <SlideInOut leftSlider in={showRoute3}>
             {  routes['gym'] ? (
-              <RouteTile routes={routes} routeLabel={'gym'} removeRoutes={this.removeRoutes} marginTop={{marginTop: 140}} />
+              <RouteTile routes={routes} routeLabel={'gym'} strokeColor='#bcdcf4'removeRoutes={this.removeRoutes} marginTop={{marginTop: 140}} />
             ) : (null)}
           </SlideInOut>
 

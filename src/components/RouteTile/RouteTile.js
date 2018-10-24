@@ -40,7 +40,7 @@ class RouteTile extends Component {
           <div className="RouteTile-info">
             <label className="RouteTile-text">{this.calculateEta(routeLabel)}</label>
             <label className="RouteTile-text">{this.calculateDelay(routeLabel)}min delay</label>
-            <div style={{height: '5px', width: '15%', backgroundColor: 'red'}}></div>
+            <div style={{height: '5px', width: '15%', backgroundColor: this.props.strokeColor}}></div>
           </div>
         </div>
       </button>
