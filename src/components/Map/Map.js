@@ -162,6 +162,7 @@ class Map extends Component {
       );
     }
     if (destinations) {
+      console.log("destinations", destinations);
       destinations.forEach((destination) => {
         markers.push(
           <DraggableMarker2

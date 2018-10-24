@@ -42,7 +42,7 @@ const initialState = {
   user,
   destination: null,
   recommendations: [],
-  routes: null,
+  routes: {},
   chargingpark: null,
   errorMessage: null,
   mapProps: {
@@ -174,15 +174,23 @@ class App extends Component {
             />
 
           <SlideInOut leftSlider in={showRoute1}>
-            <RouteTile routes={routes} routeLabel={'home'} removeRoutes={this.removeRoutes} />
+
+          {  routes['normal'] ? (
+              <RouteTile routes={routes} routeLabel={'home'} removeRoutes={this.removeRoutes} />
+            ) : (null)}
           </SlideInOut>
 
           <SlideInOut leftSlider in={showRoute2}>
-            <RouteTile routes={routes} routeLabel={'work'} removeRoutes={this.removeRoutes} marginTop={{marginTop: 70}} />
+            { routes['work'] ? (
+              <RouteTile routes={routes} routeLabel={'work'} removeRoutes={this.removeRoutes} marginTop={{marginTop: 70}} />
+            ) : (null)
+            }
           </SlideInOut>
 
           <SlideInOut leftSlider in={showRoute3}>
-            <RouteTile routes={routes} routeLabel={'gym'} removeRoutes={this.removeRoutes} marginTop={{marginTop: 140}} />
+            {  routes['gym'] ? (
+              <RouteTile routes={routes} routeLabel={'gym'} removeRoutes={this.removeRoutes} marginTop={{marginTop: 140}} />
+            ) : (null)}
           </SlideInOut>
 
         </div>
@@ -210,12 +218,14 @@ class App extends Component {
 
 
   removeRoutes = (keepOnly) => {
+  console.log("keepOnly", keepOnly);
 
     if (keepOnly === 'work') {
       let work = this.state.routes['work'];
       console.log("work", work);
 
       this.setState({
+        routes: Object.assign({work: this.state.routes[keepOnly]}),
         showRoute1: false,
         showRoute3: false,
         destinations: [this.state.destinations[1]]
