@@ -5,7 +5,6 @@ import { Layer, Feature } from 'react-mapbox-gl';
 class Route extends Component {
 
   render () {
-    console.log("route props", this.props.id);
     const {
       id,
       before,

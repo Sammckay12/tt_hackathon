@@ -9,11 +9,19 @@ class RouteTile extends Component {
 
   // routeLabel='Home' routeEta='6:30pm' routeDelay='5'
   calculateDelay = (routeLabel) => {
-    return this.props.routes.normal.summary.trafficDelayInSeconds / 60;
+    if (routeLabel === 'home') {
+      return this.props.routes['normal'].summary.trafficDelayInSeconds / 60;
+    } else {
+      return this.props.routes[routeLabel].summary.trafficDelayInSeconds / 60;
+    }
   }
 
   calculateEta = (routeLabel) => {
-    return moment(this.props.routes.normal.summary.arrivalTime).format('hh:mmA');
+    if (routeLabel === 'home') {
+      return moment(this.props.routes['normal'].summary.arrivalTime).format('hh:mmA');
+    } else {
+      return moment(this.props.routes[routeLabel].summary.arrivalTime).format('hh:mmA');
+    }
   }
 
   render() {
