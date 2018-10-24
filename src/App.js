@@ -8,6 +8,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import OnlineSearch from './services/OnlineSearch';
 import OnlineRouting from './services/OnlineRouting';
 import RouteTile from './components/RouteTile/RouteTile';
+import PlaceTile from './components/PlaceTile/PlaceTile';
 import SlideInOut from './transitions/SlideInOut';
 import users from './data/users';
 
@@ -60,7 +61,8 @@ const initialState = {
   activeRoutes : true,
   showRoute1: false,
   showRoute2: false,
-  showRoute3: false
+  showRoute3: false,
+  showPlaces: false,
 };
 
 class App extends Component {
@@ -86,7 +88,8 @@ class App extends Component {
       activeRoutes,
       showRoute1,
       showRoute2,
-      showRoute3
+      showRoute3,
+      showPlaces
     } = this.state;
 
     return (
@@ -192,6 +195,24 @@ class App extends Component {
             ) : (null)}
           </SlideInOut>
 
+          { showPlaces ? (
+            <div style={{display: 'flex', position: 'fixed', top: '170px', right: '85px', width: '200px', height: 2, backgroundColor: 'rgba(0,0,0,0.83)', borderRadius: 2}}></div>
+          ) : (
+            null
+          )}
+
+          <SlideInOut leftSlider in={showPlaces}>
+            <PlaceTile marginTop={{marginTop: 110}} />
+          </SlideInOut>
+
+          <SlideInOut leftSlider in={showPlaces}>
+            <PlaceTile marginTop={{marginTop: 180}} />
+          </SlideInOut>
+
+          <SlideInOut leftSlider in={showPlaces}>
+            <PlaceTile marginTop={{marginTop: 250}} />
+          </SlideInOut>
+
         </div>
       </div>
     );
@@ -227,7 +248,8 @@ class App extends Component {
         routes: Object.assign({work: this.state.routes[keepOnly]}),
         showRoute1: false,
         showRoute3: false,
-        destinations: [this.state.destinations[1]]
+        destinations: [this.state.destinations[1]],
+        showPlaces: true
       })
     }
     if (keepOnly === 'gym') {
@@ -235,7 +257,8 @@ class App extends Component {
         routes: Object.assign({}, {gym: this.state.routes[keepOnly]}),
         showRoute1: false,
         showRoute2: false,
-        destinations: [this.state.destinations[2]]
+        destinations: [this.state.destinations[2]],
+        showPlaces: true
       })
     }
     if (keepOnly === 'school') {
@@ -243,7 +266,8 @@ class App extends Component {
         routes: Object.assign({}, {normal: this.state.routes['normal']}),
         showRoute2: false,
         showRoute3: false,
-        destinations: [this.state.destinations[0]]
+        destinations: [this.state.destinations[0]],
+        showPlaces: true
       })
     }
     console.log("routes",this.state.routes[keepOnly]);
@@ -337,7 +361,7 @@ class App extends Component {
   onSetUserPosition = (coordinates) => {
     if (coordinates) {
       this.setState({
-        user: Object.assign({}, this.state.user, {coordinates}) 
+        user: Object.assign({}, this.state.user, {coordinates})
       });
     }
   }
