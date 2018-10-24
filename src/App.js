@@ -51,7 +51,7 @@ const initialState = {
     fitBounds: null,
     fitBoundsOptions: {padding: {top: 35, right: 35, left: 370, bottom: 35}}
   },
-  activeRoute: 'normal',
+  activeRoute: 'work',
   activePanel: 'settings',
   selectedCountry: 'GB',
   showCountrySelector: false,
@@ -257,6 +257,7 @@ class App extends Component {
     // let destination2 = {coordinates: {lng:20.400883, lat: 44.827453}, type: 'gym'}
     // const destinations = [destination, destination1, destination2]
   console.log("destinations", destinations);
+    console.log("activeRoute", activeRoute);
     this.setState({destinations: destinations})
 
     if (user && destinations) {

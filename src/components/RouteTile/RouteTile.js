@@ -17,8 +17,6 @@ class RouteTile extends Component {
   }
 
   calculateEta = (routeLabel) => {
-  console.log("this.props.routes", this.props.routes);
-console.log("routeLabel calc", routeLabel);
     if (routeLabel === 'home') {
       return moment(this.props.routes['normal'].summary.arrivalTime).format('hh:mmA');
     } else {
@@ -28,7 +26,6 @@ console.log("routeLabel calc", routeLabel);
 
   render() {
     const { routeLabel } = this.props;
-    console.log("routes", this.props.routes);
 
     return (
       <button
