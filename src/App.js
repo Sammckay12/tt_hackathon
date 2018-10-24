@@ -24,6 +24,7 @@ const initialState = {
   user,
   destination: null,
   recommendations: [],
+  timeParameter: '',
   routes: {},
   chargingpark: null,
   errorMessage: null,
@@ -219,7 +220,10 @@ class App extends Component {
         responseJson.forEach((loc) => {
           loc['coordinates'] = {lng: loc.lon, lat: loc.lat}
         })
-        this.setState({destinations: responseJson}, () => {this.route()} )
+        this.setState({
+          destinations: responseJson,
+          timeParameter: timeParameters
+        }, () => {this.route()} )
     })
   }
 
@@ -268,7 +272,7 @@ class App extends Component {
     this.setState({destinations: destinations})
 
     if (user && destinations) {
-      OnlineRouting.batchRoute(user, destinations)
+      OnlineRouting.batchRoute(user, destinations, this.state.timeParameter)
         .then(routes => {
 
           // this.fetchRecommendations(user, routes)

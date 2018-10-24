@@ -3,19 +3,19 @@ import mapboxgl from 'mapbox-gl';
 import _ from 'lodash';
 import {TOMTOM_API_KEY, ONLINE_ROUTING_BASE_URL} from '../config';
 
-const batchRoute = (user, destination, useTraffic = true) => {
+const batchRoute = (user, destination, timeParameter, useTraffic = true) => {
   const batchItems = [];
   const home = [mapboxgl.LngLat.convert(user.coordinates), mapboxgl.LngLat.convert(destination[0].coordinates)].map(p => `${p.lat},${p.lng}`).join(':');
   const work = [mapboxgl.LngLat.convert(user.coordinates), mapboxgl.LngLat.convert(destination[1].coordinates)].map(p => `${p.lat},${p.lng}`).join(':');
   const gym = [mapboxgl.LngLat.convert(user.coordinates), mapboxgl.LngLat.convert(destination[2].coordinates)].map(p => `${p.lat},${p.lng}`).join(':');
   batchItems.push({
-    query: `/calculateRoute/${home}/json?routeType=fastest&traffic=${useTraffic}`
+    query: `/calculateRoute/${home}/json?routeType=fastest&traffic=${useTraffic}&departAt=${timeParameter}`
   });
   batchItems.push({
-    query: `/calculateRoute/${work}/json?routeType=fastest&traffic=${useTraffic}`
+    query: `/calculateRoute/${work}/json?routeType=fastest&traffic=${useTraffic}&departAt=${timeParameter}`
   });
   batchItems.push({
-    query: `/calculateRoute/${gym}/json?routeType=fastest&traffic=${useTraffic}`
+    query: `/calculateRoute/${gym}/json?routeType=fastest&traffic=${useTraffic}&departAt=${timeParameter}`
   });
 
   const url = `${ONLINE_ROUTING_BASE_URL}/batch/sync/json?key=${TOMTOM_API_KEY}`;
