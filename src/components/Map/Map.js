@@ -86,16 +86,16 @@ class Map extends Component {
     const layers = [];
 
     if (routes) {
-      if (routes['work']) {
+      if (routes['gym']) {
       layers.push(
         <Route
-           id="route-work"
-           key="route-work"
-           strokeColor='yellow'
-           color='yellow'
-           coordinates={routes.work.coordinates}
+           id="route-gym"
+           key="route-gym"
+           strokeColor='rgba(18, 126, 207, 0.25)'
+           color='rgba(63, 164, 236, 0.25)'
+           coordinates={routes.gym.coordinates}
            {...(this.getRouteStyle('normal'))}
-           properties={{route: 'eco'}}
+           properties={{route: 'normal'}}
            onClick={this.onRouteClick}
            />
         );
@@ -105,25 +105,25 @@ class Map extends Component {
         <Route
            id="route-normal"
            key="route-normal"
-           strokeColor='green'
-           color='green'
+           strokeColor='rgba(18, 126, 207, 0.5)'
+           color='rgba(63, 164, 236, 0.5)'
            coordinates={routes.normal.coordinates}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'normal'}}
            onClick={this.onRouteClick}
            />
         );
-      }
-      if (routes['gym']) {
+      }      
+      if (routes['work']) {
       layers.push(
         <Route
-           id="route-gym"
-           key="route-gym"
-           strokeColor='red'
-           color='red'
-           coordinates={routes.gym.coordinates}
+           id="route-work"
+           key="route-work"
+           strokeColor='rgba(18, 126, 207, 1)'
+           color='rgba(63, 164, 236, 1)'
+           coordinates={routes.work.coordinates}
            {...(this.getRouteStyle('normal'))}
-           properties={{route: 'normal'}}
+           properties={{route: 'eco'}}
            onClick={this.onRouteClick}
            />
         );
