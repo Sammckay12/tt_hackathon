@@ -54,7 +54,6 @@ class Map extends Component {
     const routes = this.renderRoutes();
     const markers = this.renderMarkers();
     const popup = this.renderPopup();
-console.log("user.coordinates",user.coordinates);
     return (
       <MapboxGl
          style={mapStyle}
@@ -91,6 +90,8 @@ console.log("user.coordinates",user.coordinates);
         <Route
            id="route-work"
            key="route-work"
+           strokeColor='yellow'
+           color='yellow'
            coordinates={routes.work.coordinates}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'eco'}}
@@ -103,6 +104,8 @@ console.log("user.coordinates",user.coordinates);
         <Route
            id="route-normal"
            key="route-normal"
+           strokeColor='green'
+           color='green'
            coordinates={routes.normal.coordinates}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'normal'}}
@@ -115,6 +118,8 @@ console.log("user.coordinates",user.coordinates);
         <Route
            id="route-gym"
            key="route-gym"
+           strokeColor='red'
+           color='red'
            coordinates={routes.gym.coordinates}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'normal'}}
@@ -130,7 +135,9 @@ console.log("user.coordinates",user.coordinates);
 
   getRouteStyle (routeType) {
     const { routes } = this.props;
-    const route = routes[routeType];
+    console.log("routes", routes);
+    console.log("routeType", routeType);
+    const route = routes[routeType]
   }
 
   renderMarkers () {
@@ -145,8 +152,11 @@ console.log("user.coordinates",user.coordinates);
            anchor="center"
            onDragEnd={this.setUserPosition}
            draggable
+           size="2.8rem"
+           src={user.image}
+           shadow
            >
-          <Icon size="2.8rem" src={user.image} shadow/>
+          {/* <Icon size="2.8rem" src={user.image} shadow/> */}
         </DraggableMarker>
       );
     }
@@ -182,6 +192,7 @@ console.log("user.coordinates",user.coordinates);
     }
     return markers;
   }
+}
 
   clickedMarker = (place) => {
   console.log("clickedMarker", place);
