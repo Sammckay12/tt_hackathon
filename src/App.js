@@ -149,6 +149,7 @@ class App extends Component {
                onMoveEnd={this.onMapMoveEnd}
                onGeolocate={this.geolocate}
                onUserChange={this.onUserChange}
+               onSetUserPosition={this.onSetUserPosition}
                onDestinationChange={this.onDestinationChange}
                onDestinationReverseGeocode={this.onDestinationReverseGeocode}
                onActiveRouteChange={this.onActiveRouteChange}
@@ -322,6 +323,14 @@ class App extends Component {
       selectedUserIndex,
       user
     });
+  }
+
+  onSetUserPosition = (coordinates) => {
+    if (coordinates) {
+      this.setState({
+        user: Object.assign({}, this.state.user, {coordinates}) 
+      });
+    }
   }
 
   onActivePanelChange = (activePanel) => {

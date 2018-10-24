@@ -44,7 +44,8 @@ class Map extends Component {
       user,
       zoom,
       fitBounds,
-      fitBoundsOptions
+      fitBoundsOptions,
+      onSetUserPosition
     } = this.props;
 
     const { geolocating } = this.state;
@@ -199,44 +200,46 @@ class Map extends Component {
 
   renderPopup () {
     const { popupCoordinates } = this.state;
-
-    if (popupCoordinates) {
-      return (
-        <React.Fragment>
-          <Marker
-             coordinates={popupCoordinates}
-             key={`${popupCoordinates.toString()}-temp-marker`}
-             anchor="bottom"
-             >
-            <PinIcon size="2rem" type="flag-checkered" color="#ababab" shadow/>
-          </Marker>
-          <Popup
-             coordinates={popupCoordinates}
-             key={`${popupCoordinates.toString()}-popup`}
-             offset={{
-               bottom: [0, -32],
-               top: [0, 0]
-             }}
-             >
-            <MapPopup
-               coordinates={popupCoordinates}
-               onClose={this.onPopupClose}
-               onRoute={this.setDestinationPosition}
-               onSetUserPosition={this.setUserPosition}
-               />
-          </Popup>
-        </React.Fragment>
-      );
-    } else {
-      return null;
-    }
+  
+    const coordinates = {popupCoordinates};
+//    console.log("renderPopup",this.props.onSetUserPosition(coordinates));
+  //  this.props.onSetUserPosition(coordinates);
+    // if (popupCoordinates) {
+    //   return (
+    //     <React.Fragment>
+    //       <Marker
+    //          coordinates={popupCoordinates}
+    //          key={`${popupCoordinates.toString()}-temp-marker`}
+    //          anchor="bottom"
+    //          >
+    //         <PinIcon size="2rem" type="flag-checkered" color="#ababab" shadow/>
+    //       </Marker>
+    //       <Popup
+    //          coordinates={popupCoordinates}
+    //          key={`${popupCoordinates.toString()}-popup`}
+    //          offset={{
+    //            bottom: [0, -32],
+    //            top: [0, 0]
+    //          }}
+    //          >
+    //         <MapPopup
+    //            coordinates={popupCoordinates}
+    //            onClose={this.onPopupClose}
+    //            onRoute={this.setDestinationPosition}
+    //            onSetUserPosition={onSetUserPosition}
+    //            />
+    //       </Popup>
+    //     </React.Fragment>
+    //   );
+    // } else {
+    //   return null;
+    // }
   }
 
   setUserPosition = (lngLat) => {
     this.setState({popupCoordinates: null});
 
-    const user = Object.assign({}, this.props.user, {coordinates: lngLat});
-    this.props.onUserChange && this.props.onUserChange(user);
+    this.props.onSetUserPosition && this.props.onSetUserPosition(lngLat);
   }
 
   setDestinationPosition = (lngLat) => {
@@ -303,6 +306,7 @@ Map.propTypes = {
   onMoveEnd: PropTypes.func,
   onGeolocate: PropTypes.func,
   onDestinationChange: PropTypes.func,
+  onSetUserPosition: PropTypes.func,
   onDestinationReverseGeocode: PropTypes.func,
   onActiveRouteChange: PropTypes.func,
   onUserChange: PropTypes.func,
