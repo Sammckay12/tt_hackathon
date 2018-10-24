@@ -91,8 +91,8 @@ class Map extends Component {
         <Route
            id="route-gym"
            key="route-gym"
-           strokeColor='rgba(18, 126, 207, 0.25)'
-           color='rgba(63, 164, 236, 0.25)'
+           strokeColor='#a2bed4'
+           color='#bcdcf4'
            coordinates={routes.gym.coordinates}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'normal'}}
@@ -105,22 +105,22 @@ class Map extends Component {
         <Route
            id="route-normal"
            key="route-normal"
-           strokeColor='rgba(18, 126, 207, 0.5)'
-           color='rgba(63, 164, 236, 0.5)'
+           strokeColor='#3381bb'
+           color='#3d99dd'
            coordinates={routes.normal.coordinates}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'normal'}}
            onClick={this.onRouteClick}
            />
         );
-      }      
+      }
       if (routes['work']) {
       layers.push(
         <Route
            id="route-work"
            key="route-work"
-           strokeColor='rgba(18, 126, 207, 1)'
-           color='rgba(63, 164, 236, 1)'
+           strokeColor='#155481'
+           color='#1c689f'
            coordinates={routes.work.coordinates}
            {...(this.getRouteStyle('normal'))}
            properties={{route: 'eco'}}
