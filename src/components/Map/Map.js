@@ -179,12 +179,13 @@ class Map extends Component {
       })
     }
     if (recommendations) {
+    console.log("recommendations", recommendations);
       recommendations.forEach((place) => {
         markers.push(
           <Marker
             onClick={() => {this.clickedMarker(place)}}
              coordinates={place.geo}
-             key={`${place._id.toString()}-temp-marker`}
+             key={`${place.imagesLink.toString()}-temp-marker`}
              anchor="bottom"
              >
             <PinIcon size="2rem" type="star" color="#1faa74" shadow/>

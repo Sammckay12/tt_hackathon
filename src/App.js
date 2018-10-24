@@ -11,32 +11,13 @@ import RouteTile from './components/RouteTile/RouteTile';
 import PlaceTile from './components/PlaceTile/PlaceTile';
 import SlideInOut from './transitions/SlideInOut';
 import users from './data/users';
+import kompasPlaces from './components/Help/places.json'
 
 import './App.css';
 
 const selectedUserIndex = 0;
 const user = {...users[selectedUserIndex]};
 
-const predictedData = [
-{
-"confidence": 0.99,
-"label": "Work",
-"lat": 44.80438,
-"lon": 20.42887
-},
-{
-"confidence": 0.6,
-"label": "NoviMerkator",
-"lat": 44.82124,
-"lon": 20.41349
-},
-{
-"confidence": 0.48,
-"label": "MesareaBubreg",
-"lat": 44.80923,
-"lon": 20.41823
-}
-]
 
 const initialState = {
   selectedUserIndex,
@@ -219,7 +200,7 @@ class App extends Component {
   }
 
   fetchPredictedDestinations = (timeParameters) => {
-
+    console.log("timeParameters", timeParameters)
     fetch(`http://localhost:8010/proxy/predict_destination/user42/lat44.8211475/lon20.3983179/time${timeParameters}`, {
       method: 'GET',
       headers: {
@@ -232,19 +213,18 @@ class App extends Component {
           loc['coordinates'] = {lng: loc.lon, lat: loc.lat}
         })
         this.setState({destinations: responseJson}, () => {this.route()} )
-      console.log("responseJson", responseJson);
     })
   }
 
 
   removeRoutes = (keepOnly) => {
-  console.log("keepOnly", keepOnly);
 
     if (keepOnly === 'work') {
       let work = this.state.routes['work'];
       console.log("work", work);
-
+      console.log("kompasPlaces", kompasPlaces);
       this.setState({
+        recommendations: kompasPlaces,
         routes: Object.assign({work: this.state.routes[keepOnly]}),
         showRoute1: false,
         showRoute3: false,
@@ -270,8 +250,6 @@ class App extends Component {
         showPlaces: true
       })
     }
-    console.log("routes",this.state.routes[keepOnly]);
-    console.log("hiiii", keepOnly);
   }
 
   route () {
@@ -307,7 +285,6 @@ class App extends Component {
         body: JSON.stringify({
           "routes": routes.normal.coordinates})
     }).then((res) => res.json())
-    .then((data) =>  this.setState({recommendations: data}))
     .catch((err)=>console.log(err))
   }
 
